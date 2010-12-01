@@ -1,0 +1,33 @@
+<li id="<%= dom_id story %>" class="page_<%= @stories.current_page %>">
+  <div class="wrapper">
+    <%
+    many_opens = item.opens >= 10
+    #many_pages = item.pages >= 50
+    %>
+    <% if many_opens || many_pages %>
+      <div class="emblems">
+        <% if many_opens %><%= image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.") %><% end %>
+        <% if false#many_pages %><%= image_tag("icons/book.png", :title => "Has 50 or more pages") %><% end %>
+      </div>
+    <% end %>
+      <div class="actions">
+        <%= link_to(image_tag("icons/zoom.png", :title => "More information about this story"),
+        more_info_story_path(story), :class => 'colorbox') %><%#= image_tag("icons/" + if item.win?
+        #  "thumbs_up.png"
+        #elsif item.fail?
+        #  "thumbs_down.png"
+        #else
+        #  "shading.png"
+        #end) %><%= link_to(image_tag("icons/delete.png", :title => 'Delete this story'), story_url(story), :method => 'delete', :confirm => "Are you sure you want to delete #{story.title}?", :remote => true) %>
+    </div>
+    <%= link_to(truncate(story.content, :length => 50) + story_title(story, Stories.collection.always_show_title?), story_url(story), :target => '_blank') %>
+    <div class="info">
+      <%= story_title(story, !Stories.collection.always_show_title?) %>
+      <%= image_tag("icons/application_go.png", :title => "Opens") %> <span class="opens"><%= story.opens %></span><br>
+      <div class="tag_list"><%= h story.tag_list %></div>
+      <%= form_for story, :remote => true do |f| %>
+          <%= f.text_field :tag_list, :class => 'input' %>
+        <% end %>
+    </div>
+  </div>
+</li>

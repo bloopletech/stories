@@ -1,0 +1,6 @@
+Fix lockup in production mode only.
+Fix import of gif with two frames not forcing the crop of both frames.
+Add docs.
+Add directory_watcher with progress bar in corner of screen so we can drop the 'Import and Update'.
+Move actions into a submenu.
+Change lightbox to a faster script, loading pages is too slow at the moment.

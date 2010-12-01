@@ -1,0 +1,1 @@
+page << "alert('Importing and updating now; refresh at will for the latest changes to your collection.');"

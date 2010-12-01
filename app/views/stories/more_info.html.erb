@@ -1,0 +1,17 @@
+<div id="story">
+  <div id="info">
+    <span class="title"><%= h @story.title %></span><br>
+    Opens <%= image_tag("icons/application_go.png", :title => "Opens") %>: <%= @story.opens %><br>
+    Published: <%= @story.published_on %><br>
+    Added: <%= @story.created_at %><br>
+    Last Opened: <%= @story.last_opened_at || "Unknown" %><br>
+    Tags: <%= raw @story.tag_counts.map { |tag| link_to tag.name, stories_path(params.except(:controller, :action).merge(:search => tag.name)), :title => pluralize(tag.taggings.count, "Occurence"), :target => "_top" }.join(' ') %>
+    <%# tag.taggings is a hack, if we ever tag a different mofdel, will need to restrict to books. %>
+    <div class="actions">
+      <ul>
+        <li><%= link_to("Open story", send("#{@story.type.downcase}_url", @story), :remote => true) %></li>
+        <li><%= link_to("Search google for the title", "http://google.com/search?q=#{CGI::escape @story.title}", :target => "_blank") %></li>
+      </ul>
+    </div>
+  </div>
+</div>

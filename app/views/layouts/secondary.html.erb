@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="">
+  <head>
+    <title>Story Reader</title>
+    <%= stylesheet_link_tag 'style', 'formtastic', 'formtastic_changes', 'secondary' %>
+    <%= javascript_include_tag 'lib/jquery-1.4.4', 'lib/rails', 'lib/jrails' %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

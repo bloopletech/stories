@@ -1,0 +1,6 @@
+%w(tag_list).each do |a|
+  page << "$('##{dom_id @story} .#{a}').html(\"#{j(@story.send(a))}\").show().next().hide()"
+#  page << "$$('##{dom_id @book} input[name=\"book[#{a}]\"]')[0].hide()"
+#  page << "$$('##{dom_id @book} input[name=\"book[#{a}]\"]')[0].hide()"
+#  page.replace_html("#{dom_id @book}_#{attr}", )
+end

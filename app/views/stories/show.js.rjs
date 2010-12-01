@@ -1,0 +1,2 @@
+#page << "if($$('##{dom_id @book} span.opens').length > 0) $$('##{dom_id @book} span.opens')[0].update('#{@book.opens}');"
+#page << "window.open('#{escape_javascript(book_page_path(@book, 1))}', '#{dom_id @book}');"
