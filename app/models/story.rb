@@ -82,7 +82,7 @@ CMD
     { :title => File.basename(real_path), :content =>
       import_text(File.read(real_path), HTML_EXTS.include?(File.extname(real_path)) ? "html" : "kramdown") }
   end
-  
+
   def self.import_text(text, parser)
     doc = Kramdown::Document.new(text, :parser => parser)
     normalize(doc.root)
@@ -97,6 +97,9 @@ CMD
       elsif child.type == :html_element
         if child.value == 'br'
           child.type = :br
+          child.value = ""
+          child.options[:category] = :span
+          
           child
         elsif child.children.empty?
           nil
