@@ -2,47 +2,46 @@
   <%= javascript_include_tag 'index', 'endless_scroll' %>
 <% end %>
 
-<div id="wrapper">
-  <div id="tag_cloud" style="display: none;">
-    <% tag_cloud(@tags, %w(size_1 size_2 size_3 size_4)) do |tag, css_class| %>
-      <%= link_to tag.name, stories_path(params.except(:controller, :action).merge(:search => tag.name)), :class => css_class, :title => pluralize(tag.count, "Occurence") %>
-    <% end %>
-  </div>
-  
-  <div id="header">
-    <div id="actions">
-      <%= link_to("Tag cloud", {}, :id => 'tag_cloud_link') %>
-      <%= link_to(image_tag("icons/information.png") + "Info", info_stories_path, :class => 'lightwindow', :params => 
-            "lightwindow_type=external,lightwindow_width=550,lightwindow_height=350") %>
-            <%= link_to(image_tag("icons/add.png") + "Import and Update", import_and_update_stories_path, :method => 'get', :remote => true) %>
-      <%= link_to("Change Collection", collections_path) %>
-      <%= link_to("Quit Story Reader", quit_stories_path, :confirm => "Are you sure you want to quit the Story Reader?") %>
-    </div>
-  
-    <%= form_tag(stories_path, { :method => :get, :id => 'search_form' }) do %>
-      <%= text_field_tag 'search', params[:search] %>
-      <%= select_tag 'sort', options_for_select([['Published', 'published_on'], ['Alphabetically', 'sort_key'], ['Last opened at', 'last_opened_at'], ['Date added', 'created_at'], ['Popularity', 'opens']], params[:sort]) %>
-      <%= select_tag 'sort_direction', options_for_select([['Descending', 'DESC'], ['Ascending', 'ASC']], params[:sort_direction]) %>
-      <%= link_to("Clear search", stories_path) %>
-    <% end %>
-  </div>
-  
-  <div class="clear"></div>
-  <ul id="stories">
-    <% @stories.each do |b| %>
-      <%= render :partial => 'story', :locals => { :item => b } %>
-    <% end %>
-    <% if @stories.empty? %>
-    <script type="text/javascript">
-        last_page = true;
-      </script>
-      No results found.
-      <% elsif is_last_page?(@stories) %>
-    <script type="text/javascript">
-        last_page = true;
-      </script>
-      <%= render :partial => 'end_of_results' %>
-    <% end %>
-  </ul>
-  <div class="clear"></div>
+<div id="tag_cloud" style="display: none;">
+  <% tag_cloud(@tags, %w(size_1 size_2 size_3 size_4)) do |tag, css_class| %>
+  <%= link_to tag.name, stories_path(params.except(:controller, :action).merge(:search => tag.name)), :class => css_class, :title => pluralize(tag.count, "Occurence") %>
+  <% end %>
 </div>
+
+<div id="header">
+  <div id="actions">
+    <%= link_to("Add a story", new_story_path, :class => 'colorbox edit') %>
+    <%= link_to("Tag cloud", {}, :id => 'tag_cloud_link') %>
+    <%= link_to(image_tag("icons/information.png") + "Info", info_stories_path, :class => 'lightwindow', :params =>
+    "lightwindow_type=external,lightwindow_width=550,lightwindow_height=350") %>
+    <%= link_to(image_tag("icons/add.png") + "Import and Update", import_and_update_stories_path, :method => 'get', :remote => true) %>
+    <%= link_to("Change Collection", collections_path) %>
+    <%= link_to("Quit Story Reader", quit_stories_path, :confirm => "Are you sure you want to quit the Story Reader?") %>
+  </div>
+  
+  <%= form_tag(stories_path, { :method => :get, :id => 'search_form' }) do %>
+  <%= text_field_tag 'search', params[:search] %>
+  <%= select_tag 'sort', options_for_select([['Published', 'published_on'], ['Alphabetically', 'sort_key'], ['Last opened at', 'last_opened_at'], ['Date added', 'created_at'], ['Popularity', 'opens']], params[:sort]) %>
+  <%= select_tag 'sort_direction', options_for_select([['Descending', 'DESC'], ['Ascending', 'ASC']], params[:sort_direction]) %>
+  <%= link_to("Clear search", stories_path) %>
+  <% end %>
+</div>
+
+<div class="clear"></div>
+<ul id="stories">
+  <% @stories.each do |b| %>
+  <%= render :partial => 'story', :locals => { :story => b } %>
+  <% end %>
+  <% if @stories.empty? %>
+  <script type="text/javascript">
+    last_page = true;
+  </script>
+  No results found.
+  <% elsif is_last_page?(@stories) %>
+  <script type="text/javascript">
+    last_page = true;
+  </script>
+  <%= render :partial => 'end_of_results' %>
+  <% end %>
+</ul>
+<div class="clear"></div>

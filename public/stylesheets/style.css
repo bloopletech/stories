@@ -1,9 +1,11 @@
-* { margin: 0; padding: 0; }
+/* Shared */
+* { margin: 0; padding: 0; font: 16px/1.3em Georgia, Helvetica, Arial, sans-serif; }
 body { color: #000000; }
-body, input, select, textarea, table, tr, td { font: 16px/1.3em Helvetica, Arial, sans-serif; }
 img { border: none; vertical-align: middle; }
-li { margin-left: 30px; }
 p, ul { margin-bottom: 1.3em; }
+ul { margin-left: 30px; }
+h1 { font-size: 30px; margin-bottom: 20px; text-align: center; }
+h2 { font-size: 25px; margin-bottom: 15px; }
 
 .clear { clear: both; }
 
@@ -13,6 +15,8 @@ p, ul { margin-bottom: 1.3em; }
 
 #wrapper { margin: 15px; }
 
+/* List page only */
+
 #tag_cloud { position: absolute; top: 0; right: 0; z-index: 1000; width: 500px; background-color: #ffffff; padding: 15px; }
 #tag_cloud .size_1 { font_size: 1.0em; }
 #tag_cloud .size_2 { font_size: 1.2em; }
@@ -20,9 +24,9 @@ p, ul { margin-bottom: 1.3em; }
 #tag_cloud .size_4 { font-size: 1.6em; }
 
 .title { font-weight: bold; }
-#stories li { width: 200px; height: 320px; margin: 0 15px 15px 0; float: left; list-style-type: none; position: relative; }
-#stories li .emblems, #storys li .actions { display: block; position: absolute; top: 0; right: 0; padding: 1px; line-height: 0; background-color: #ffffff; }
-#stories li .actions { display: none; right: auto; left: 0; width: 32px; }
+#stories { margin-left: 0; }
+#stories li { width: 425px; height: 320px; margin: 0 15px 15px 0; float: left; list-style-type: none; position: relative; }
+#stories li .actions-emblems { display: block; position: absolute; top: 0; right: 0; padding: 1px; line-height: 0; background-color: #ffffff; }
 #stories li .wrapper > a { color: #000000; text-decoration: none; }
 #stories li .info { display: none; }
 #stories li .info img { vertical-align: middle; }
@@ -31,14 +35,19 @@ p, ul { margin-bottom: 1.3em; }
 #stories input { width: 100%; }
 /*#stories .tags form { display: none; }*/
 
+#stories .info { margin-top: 5px; }
+#stories .info .stat { float: left; padding-right: 15px; }
+
 #stories li:hover { overflow: visible; z-index: 999; }
 #stories li:hover .wrapper { position: absolute; top: 0; left: 0; background-color: #ffffff; }
-#stories li:hover .actions, #storys li:hover .info { display: block; }
+#stories li:hover .actions-emblems, #stories li:hover .info { display: block; }
 
 #story .title_image { float: left; margin-right: 15px; }
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
 
+
+#stories-show #wrapper { width: 800px; margin-left: auto; margin-right: auto; }
 /*
 #stories-index body {
  background-image: -webkit-gradient(

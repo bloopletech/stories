@@ -12,3 +12,21 @@ The following style may be *conditionally* included for improved support on olde
 form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 --------------------------------------------------------------------------------------------------*/
+
+/* Label positioning */
+form.formtastic fieldset > ol > li label { width: 150px; padding-right: 5px; text-align: right; }
+form.formtastic fieldset > ol > li.boolean > label, form.formtastic fieldset > ol > li.check_boxes ol > li label { text-align: left; }
+form.formtastic fieldset > ol > li fieldset ol { padding-left: 155px; width: auto; }
+form.formtastic fieldset.buttons { padding-left: 155px; }
+
+
+form.formtastic fieldset > ol > li p.inline-errors { margin-left: 155px; }
+
+/* Textareas */
+form.formtastic textarea { height: 15em; }
+form.formtastic textarea, form.formtastic fieldset > ol > li.string input { max-width: none; width: 600px !important; padding: 3px; border: 1px solid #000000; }
+form.formtastic input[type='submit'] { padding: 5px; }
+
+/* Selects */
+
+p.inline-errors { margin-left: 155px; }

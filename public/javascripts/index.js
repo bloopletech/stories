@@ -16,7 +16,7 @@ var update_stories = function()
 $(update_stories);
 
 $(function()
-{  
+{
   $("#sort, #sort_direction").delayedObserver(1.0, function()
   {
     $('#search_form').submit();
@@ -37,5 +37,6 @@ $(function()
     $("#tag_cloud").hide();
   });
 
-  $("#stories .colorbox").colorbox({ width: 590, height: 390 });
+  $("#stories .colorbox.more-info").colorbox({ width: 590, height: 390 });
+  $(".colorbox.edit").colorbox({ width: 855, height: 570, iframe: true });
 });

@@ -14,7 +14,7 @@ module StoriesHelper
     #str.split(' ').map { |sub_str| sub_str.split(/.{,30}/).join("<wbr>") }.join(' ')
   end
 
-  def story_title(story, show)
-    raw (show ? "<div class='title'>#{h wbrize(story.title)}</div>" : "")
+  def story_title(story)
+    raw "<div class='title'>#{h wbrize(story.title)}</div>"
   end
 end

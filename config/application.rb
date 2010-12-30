@@ -14,7 +14,7 @@ Time::DATE_FORMATS.merge!(:default => '%e %B %Y') #TODO fix so shows time as wel
 Date::DATE_FORMATS.merge!(:default => '%e %B %Y')
 
 module Stories
-  class Application < Rails::Application    
+  class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -62,7 +62,7 @@ module Stories
     Stories.dir = collection.path
     Stories.stories_dir = collection.stories_path
 
-    Dir.mkdir(Stories.stories_dir) if !File.exists?(Stories.stories_dir)    
+    Dir.mkdir(Stories.stories_dir) if !File.exists?(Stories.stories_dir)
 
     important_filename = "#{Stories.dir}/IMPORTANT!!! - DO NOT DELETE.txt"
     #if !File.exists?(important_filename)
@@ -86,3 +86,4 @@ EOF
 end
 
 require Rails.root.join('lib/file_extensions')
+require Rails.root.join('lib/nsf')

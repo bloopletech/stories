@@ -1,0 +1,31 @@
+%li{ :id => dom_id(story), :class => "page_<%= @stories.current_page %>" }
+  .wrapper
+    - many_opens = story.opens >= 10
+    .actions-emblems
+      - if many_opens
+        = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
+
+      = link_to(image_tag("icons/zoom.png", :title => "More information about this story"), more_info_story_path(story), :class => 'colorbox more-info')
+      = link_to(image_tag("icons/pencil.png", :title => 'Edit this story'), edit_story_path(story), :class => 'colorbox edit')
+      = link_to(image_tag("icons/delete.png", :title => 'Delete this story'), story_path(story), :method => 'delete', :confirm => "Are you sure you want to delete #{story.title}?", :remote => true)
+
+    = link_to(story, :target => "_blank") do
+      = story_title(story)
+      = truncate(story.content, :length => 250)
+
+    .info
+      .stat
+        = image_tag("icons/application_go.png", :title => "Opens")
+        = story.opens
+      .stat
+        = image_tag("icons/page_white_text.png", :title => "Size in words")
+        = number_with_delimiter(story.content.split(/\s+/).length)
+        words
+      .stat
+        = image_tag("icons/drive.png", :title => "Size in bytes")
+        = number_to_human_size(story.content.bytesize)
+
+      .clear
+      .tag_list= h story.tag_list
+      = form_for story, :remote => true do |f|
+        = f.text_field :tag_list, :class => 'input'

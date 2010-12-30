@@ -32,18 +32,27 @@ class StoriesController < ApplicationController
     @tags = Story.tag_counts_on(:tags)
   end
 
-  def show
-    @story = Story.find(params[:id])
-    @story.open
-    @content = Kramdown::Document.new(@story.content).to_html
+  def new
+    @story = Story.new
   end
 
-  def more_info
+  def create
+    _process_edit_content
+    @story = Story.new(params[:story])
+
+    if @story.save
+      flash[:success] = "Story successfully created"
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
     @story = Story.find(params[:id])
-    render :layout => 'secondary'
   end
 
   def update
+    _process_edit_content
     @story = Story.find(params[:id])
     if @story.update_attributes(params[:story])
       render :action => 'update_fields'
@@ -57,9 +66,23 @@ class StoriesController < ApplicationController
     @story.destroy
   end
 
+  def show
+    @story = Story.find(params[:id])
+    @story.open
+  end
+
+  def more_info
+    @story = Story.find(params[:id])
+    render :layout => 'secondary'
+  end
+
+  
+
+  
+
   def import_and_update
     #Thread.new do #Temporarily remopve threading as it seems to be causing import problems
-      Story.import_and_update      
+      Story.import_and_update
     #end
   end
 
@@ -81,5 +104,10 @@ class StoriesController < ApplicationController
   #TODO: Move someplace better
   def quit
     Process.kill("TERM", $$)
+  end
+
+  private
+  def _process_edit_content
+    params[:story][:content] = Nsf::Document.from_text(params[:story][:content]).to_nsf if params[:story][:content]
   end
 end
