@@ -27,7 +27,7 @@ class StoriesController < ApplicationController
       results
     else
       Story
-    end.order("#{params[:sort]} #{params[:sort_direction]}").paginate(:page => params[:page], :per_page => 10)
+    end.order("#{params[:sort]} #{params[:sort_direction]}").paginate(:page => params[:page], :per_page => 30)
     
     @tags = Story.tag_counts_on(:tags)
   end

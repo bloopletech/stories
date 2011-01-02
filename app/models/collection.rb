@@ -8,7 +8,7 @@ class Collection < ActiveRecord::Base
   end
 
   def exists?
-    File.exists?(path) && File.exists?(stories_path)
+    File.exists?(path)
   end
 
   def opened!
