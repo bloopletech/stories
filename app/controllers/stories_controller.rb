@@ -55,7 +55,7 @@ class StoriesController < ApplicationController
     _process_edit_content
     @story = Story.find(params[:id])
     if @story.update_attributes(params[:story])
-      render :action => 'update_fields'
+      render :action => request.xhr? ? 'update_fields' : 'update'
     else
       #boom
     end

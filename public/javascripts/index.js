@@ -1,6 +1,6 @@
 var update_stories = function()
 {
-  $("#items .tag_list").each(function()
+  $("#stories .tag_list").each(function()
   {
     var div = $(this);
     div.click(function(event)

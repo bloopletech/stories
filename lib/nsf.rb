@@ -1,5 +1,6 @@
 require 'cgi'
 require 'active_support/all'
+require 'nokogiri'
 
 module Nsf
   class Document
@@ -25,11 +26,6 @@ module Nsf
       prev_line = ""
       lines = text.split("\n")
       lines.each do |line|
-        puts "line.blank? #{line.blank?}"
-        puts "line == lines.last #{line == lines.last}"
-        puts "current_text.present? #{current_text.present?}"
-        puts "lsp(line) == 0 #{lsp(line) == 0}"
-        puts "lsp(line) < lsp(prev_line) #{lsp(line) < lsp(prev_line)}"
         if line.blank? || line == lines.last || (current_text.present? && ((lsp(line) < lsp(prev_line))))
           if in_paragraph
             in_paragraph = false
@@ -51,46 +47,71 @@ module Nsf
       self.from_blocks(blocks)
     end
 
-    def self.from_html(text)
-      doc = Nokogiri::HTML(text)
-      self.iterate(doc)
-    end
-    
-    def self.iterate(node)
-      puts "node.node_name: #{node.node_name}"
-      node.children.each { |n| self.iterate n }
-    end
+    #These tags should be recursively replaced by their contents and the resulting content appended to the current paragraph
+    CONFORMING_TEXT_TAGS = %w(a abbr b bdi bdo cite code command datalist del dfn em i img ins kbd label mark math meter noscript output q ruby s samp small span strong sub sup textarea time var wbr)
+    NONCONFORMING_TEXT_TAGS = %w(acronym big center dir font listing plaintext spacer strike tt u xmp)
+    TEXT_TAGS = CONFORMING_TEXT_TAGS + NONCONFORMING_TEXT_TAGS
 
-    def self.normalize(element)
-      element.children.map! do |child|
-        if [:xml_comment, :xml_pi, :comment, :raw].include?(child.type)
-          normalize(child)
-          child.children
-        elsif child.type == :html_element
-          if child.value == 'br'
-            child.type = :br
-            child.value = ""
-            child.options[:category] = :span
-            
-            child
-          elsif child.value == 'div'
-            child.value = 'p'
-            child
-          elsif child.value == 'p'
-            child
-          elsif child.children.empty?
-            nil
-          else
-            normalize(child)
-            child.children
+    HEADING_TAGS = %w(h1 h2 h3 h4 h5 h6)
+
+    BLOCK_PASSTHROUGH_TAGS = %w(div table tbody thead tfoot tr)
+
+    BLOCK_INITIATING_TAGS = %w(article aside body header nav p section td th)
+
+    def self.from_html(text)
+      iterate = lambda do |nodes, blocks, current_text|
+        just_appended_br = false
+        nodes.map do |node|
+          if node.text?
+            current_text << " " << node.inner_text
+            next
           end
-        else
-          normalize(child)
-          child
+
+          if node.node_name.downcase == 'head'
+            next
+          end
+
+          #Handle repeated brs by making a paragraph break
+          if node.node_name.downcase == 'br'
+            if just_appended_br
+              paragraph_text = current_text.gsub(/\s+/, ' ').strip
+              blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
+              current_text = ""
+            else
+              just_appended_br = true
+            end
+            next
+          end
+
+          #Pretend that the children of this node were siblings of this node (move them one level up the tree)
+          if (TEXT_TAGS + BLOCK_PASSTHROUGH_TAGS).include?(node.node_name.downcase)
+            iterate.call(node.children, blocks, current_text)
+            next
+          end
+
+          #These tags terminate the current paragraph, if present, and start a new paragraph
+          if BLOCK_INITIATING_TAGS.include?(node.node_name.downcase)
+            paragraph_text = current_text.gsub(/\s+/, ' ').strip
+            blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
+            current_text = ""
+
+            iterate.call(node.children, blocks, current_text)
+            next
+          end
         end
       end
-      element.children.flatten!
-      element.children.compact!
+
+      doc = Nokogiri::HTML(text)
+
+      blocks = []
+      current_text = ""
+
+      iterate.call(doc.root.children, blocks, current_text)
+      
+      #paragraph_text = current_text.gsub(/\s+/, ' ').strip
+      #blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
+      
+      Document.new(blocks)
     end
 
     def self.from_blocks(blocks)

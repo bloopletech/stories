@@ -2,8 +2,10 @@ class Setup < ActiveRecord::Migration
   def self.up
     create_table "stories", :force => true do |t|
       t.string   "title",          :limit => 500
-      t.text     "content"      
-      t.integer  "opens",                         :default => 0      
+      t.text     "content"
+      t.integer  "opens",                         :default => 0
+      t.integer  "word_count",                         :default => 0
+      t.integer  "byte_size",                         :default => 0
       t.datetime "published_on"
       t.datetime "created_at"
       t.datetime "updated_at"
@@ -36,7 +38,7 @@ class Setup < ActiveRecord::Migration
     
     create_table "tags", :force => true do |t|
       t.string "name"
-    end    
+    end
   end
 
   def self.down

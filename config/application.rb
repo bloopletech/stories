@@ -60,22 +60,8 @@ module Stories
   def self.configure(collection)
     Stories.collection = collection
     Stories.dir = collection.path
-    Stories.stories_dir = collection.stories_path
-
-    Dir.mkdir(Stories.stories_dir) if !File.exists?(Stories.stories_dir)
-
-    important_filename = "#{Stories.dir}/IMPORTANT!!! - DO NOT DELETE.txt"
-    #if !File.exists?(important_filename)
-      File.open(important_filename, "w") do |f|
-        f << <<-EOF
-THIS DIRECTORY IS NOT EMPTY.
-
-THERE ARE STORIES STORED IN THE HIDDEN FOLDER #{Stories.stories_dir} - DELETING THIS DIRECTORY WILL DELETE THESE STORIES.
-EOF
-      end
-    #end
     
-    db_config = DEFAULT_DB_CONFIG.merge(:database => "#{Stories.stories_dir}/db.sqlite3")
+    db_config = DEFAULT_DB_CONFIG.merge(:database => "#{Stories.dir}/stories-collection.sqlite3")
 
     ActiveRecord::Base.establish_connection(db_config)
     ActiveRecord::Migrator.migrate("db/migrate/")
@@ -86,4 +72,5 @@ EOF
 end
 
 require Rails.root.join('lib/file_extensions')
+require Rails.root.join('lib/string_extensions')
 require Rails.root.join('lib/nsf')

@@ -7,10 +7,6 @@ class Collection < ActiveRecord::Base
     self[:path] = File.expand_path(p)
   end
 
-  def stories_path
-    "#{path}/.stories"
-  end
-
   def exists?
     File.exists?(path) && File.exists?(stories_path)
   end
