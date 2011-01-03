@@ -32,6 +32,7 @@ class Story < ActiveRecord::Base
   #Do not call more than once at a time
   def self.import_and_update
     import_directory(Stories.dir)
+    system("cd #{File.escape_name(Stories.dir)} && find . -depth -type d -empty -exec rmdir {} \\;")
   end
   
   def self.import_directory(dir)
@@ -48,18 +49,16 @@ CMD
     path_list.each { |path| self.import("#{dir}/#{path}") }
   end
 
-  def self.import(relative_path)
-    real_path = relative_path
-    
+  def self.import(real_path)
     last_modified = File.mtime(real_path)
 
     book = nil
 
     begin
-      if COMPRESSED_FILE_EXTS.include?(File.extname(relative_path).downcase)
+      if COMPRESSED_FILE_EXTS.include?(File.extname(real_path).downcase)
         data_from_compressed_file(real_path)
         return
-      elsif ORDINARY_FILE_EXTS.include?(File.extname(relative_path).downcase)
+      elsif ORDINARY_FILE_EXTS.include?(File.extname(real_path).downcase)
         book = data_from_ordinary_file(real_path)
       end
     rescue Exception => e
@@ -72,7 +71,7 @@ CMD
       Story.create!(:title => title, :content => book[:content], :published_on => last_modified, :sort_key => Story.sort_key(title))
     end
 
-    #FileUtils.rm(real_path) if File.exists?(real_path)
+    FileUtils.rm(real_path) if File.exists?(real_path)
   end
 
   def self.data_from_compressed_file(real_path)
@@ -82,26 +81,20 @@ CMD
     if File.extname(real_path).downcase == '.zip'
       system("unzip #{File.escape_name(real_path)} -d #{File.escape_name(temp_dir)}")
       import_directory(temp_dir)
-      FileUtils.rm_rf(temp_dir)
     end
     #elsif RAR_EXTS.include?(File.extname(real_path))
     #  system("cd #{File.escape_name(destination_dir)} && unrar e #{File.escape_name(real_path)}")
     #end
+
+    FileUtils.rm_rf(temp_dir)
   end
   
   def self.data_from_ordinary_file(real_path)
-    text = File.read(real_path)
-    is_html = HTML_EXTS.include?(File.extname(real_path).downcase) || text.include?("<html>") || text.include?("<HTML>")
+    text = File.read(real_path).to_utf8
+    is_html = HTML_EXTS.include?(File.extname(real_path).downcase) || text.downcase.include?("<html>")
     
-    { :title => File.basename(real_path), :content => import_text(text, is_html ? "html" : "text") }
-  end
-
-  def self.import_text(text, format)
-    text = text.to_ascii_iconv
-    #encoding = %w(ISO-8859 iso-8859 windows-125 Windows-125).detect { |e| text.include?(e) } ? 'iso-8859-1' : 'utf-8'
-    #text = Iconv.conv('utf-8//TRANSLIT', encoding, text)
-    
-    Nsf::Document.from(text, format).to_nsf
+    { :title => File.basename(real_path),
+      :content => Nsf::Document.from(text, is_html ? "html" : "text").to_nsf }
   end
 
   private
@@ -110,48 +103,3 @@ CMD
     self.byte_size = content.bytesize
   end
 end
-
-
-=begin
-def normalize(element)
-  element.children.map! do |child|
-    if [:xml_comment, :xml_pi, :comment, :raw].include?(child.type)
-      normalize(child)
-      child.children
-    elsif child.type == :html_element
-      if child.value == 'br'
-        start_index = element.children.index(child)
-        i = start_index + 1
-        while i < element.children.length
-          current = element.children[i]
-
-          next if current.type == :text && current.value.blank?
-          if current.type == :html_element && current.value == 'br'
-            start_index.upto(i) { |v| elements.children[v] = nil }
-            break
-          elsif !(current.type == :text && current.value.blank?)
-            break
-          end
-          i += 1
-        end
-
-        child.type = :blank
-        child.value = ""
-        child.options[:category] = :block
-        
-        child
-      elsif child.children.empty?
-        nil
-      else
-        normalize(child)
-        child.children
-      end
-    else
-      normalize(child)
-      child
-    end
-  end
-  element.children.flatten!
-  element.children.compact!
-end
-=end

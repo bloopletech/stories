@@ -76,7 +76,7 @@ module Nsf
             if just_appended_br
               paragraph_text = current_text.gsub(/\s+/, ' ').strip
               blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
-              current_text = ""
+              current_text.replace("")
             else
               just_appended_br = true
             end
@@ -93,7 +93,7 @@ module Nsf
           if BLOCK_INITIATING_TAGS.include?(node.node_name.downcase)
             paragraph_text = current_text.gsub(/\s+/, ' ').strip
             blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
-            current_text = ""
+            current_text.replace("")
 
             iterate.call(node.children, blocks, current_text)
             next
