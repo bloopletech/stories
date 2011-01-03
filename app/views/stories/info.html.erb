@@ -4,9 +4,23 @@
   <p>The oldest story was published on <%= link_to(@oldest_story.published_on, @oldest_story, :method => :get, :remote => true) %>
   and the newest story was published <%= link_to(@newest_story.published_on, @newest_story, :method => :get, :remote => true) %>.</p>
 
-  <p>The longest story has <%= link_to(pluralize(number_with_delimiter(@longest_story.word_count), 'words'), @longest_story, :method => :get, :remote => true) %> and the
-  shortest has <%= link_to(pluralize(number_with_delimiter(@shortest_story.word_count), 'words'), @shortest_story, :method => :get, :remote => true) %>, with an average
-  of <%= pluralize(number_with_delimiter(Story.average('word_count'), :precision => 1), 'words') %>.</p>
+  <div class="stats-wrapper">
+    <div id="story_lengths" class="chart"></div>
+    <%
+    values = ActiveRecord::Base.connection.select_values("SELECT word_count FROM stories").map { |n| n.to_i.round_nearest(1000) }
+    hash = Hash.new(0)
+    values.each { |value| hash[value] += 1 }
+    keys = hash.keys.sort.map { |v| "#{number_with_delimiter(v)} - #{number_with_delimiter(v + 999)}" }
+    values = hash.keys.sort.map { |k| hash[k] }
+    %>
+    <%= fd_piechart("story_lengths", keys, values) %>
+    <div class="stats">
+      <p>The longest story has <%= link_to(pluralize(number_with_delimiter(@longest_story.word_count), 'words'), @longest_story, :method => :get, :remote => true) %> and the
+      shortest has <%= link_to(pluralize(number_with_delimiter(@shortest_story.word_count), 'words'), @shortest_story, :method => :get, :remote => true) %>, with an average
+      of <%= pluralize(number_with_delimiter(Story.average('word_count'), :precision => 1), 'words') %>.</p>
+    </div>
+    <div class="clear"></div>
+  </div>
 
   <p>The most popular story in your collection has been opened
   <%= link_to(pluralize(@most_popular_story.opens, 'time'), @most_popular_story, :method => :get, :remote => true) %>,

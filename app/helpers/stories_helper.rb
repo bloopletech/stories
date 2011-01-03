@@ -17,4 +17,18 @@ module StoriesHelper
   def story_title(story)
     raw "<div class='title'>#{h wbrize(story.title)}</div>"
   end
+
+  
+
+  def fd_piechart(div, keys, values)
+    return raw <<-EOF
+    <script type="text/javascript">
+    $(function()
+    {
+      pieify('#{div}', #{keys.to_json}, #{values.to_json});
+    })
+    </script>
+EOF
+  end
+    
 end
