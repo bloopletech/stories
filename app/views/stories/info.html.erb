@@ -13,7 +13,7 @@
     keys = hash.keys.sort.map { |v| "#{number_with_delimiter(v)} - #{number_with_delimiter(v + 999)}" }
     values = hash.keys.sort.map { |k| hash[k] }
     %>
-    <%= fd_piechart("story_lengths", keys, values) %>
+    <%= fd_piechart("story_lengths", "Story length (word count)", keys, values) %>
     <div class="stats">
       <p>The longest story has <%= link_to(pluralize(number_with_delimiter(@longest_story.word_count), 'words'), @longest_story, :method => :get, :remote => true) %> and the
       shortest has <%= link_to(pluralize(number_with_delimiter(@shortest_story.word_count), 'words'), @shortest_story, :method => :get, :remote => true) %>, with an average

@@ -20,12 +20,12 @@ module StoriesHelper
 
   
 
-  def fd_piechart(div, keys, values)
+  def fd_piechart(div, title, keys, values)
     return raw <<-EOF
     <script type="text/javascript">
     $(function()
     {
-      pieify('#{div}', #{keys.to_json}, #{values.to_json});
+      pieify('#{div}', "#{escape_javascript title}", #{keys.to_json}, #{values.to_json});
     })
     </script>
 EOF

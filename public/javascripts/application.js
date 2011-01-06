@@ -7,18 +7,17 @@ function pageHeight() {
 }
 
 //Sourced from http://g.raphaeljs.com/piechart2.html
-function pieify(div, keys, values)
+function pieify(div, title, keys, values)
 {
   var r = Raphael(div, 370, 270);
   //r.g.txtattr.font = "12px 'Fontin Sans', Fontin-Sans, sans-serif";
 
-  r.g.text(250, 20, "Story length").attr({ "font-size": 20 });
+  r.g.text(250, 20, title).attr({ "font-size": 20 });
 
   var pie = r.g.piechart(250, 150, 100, values,
   {
     legend: keys,
-    legendpos: "west",
-    href: ["http://raphaeljs.com", "http://g.raphaeljs.com"]
+    legendpos: "west"
   });
 
   pie.hover(function()

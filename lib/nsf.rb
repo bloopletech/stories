@@ -54,9 +54,9 @@ module Nsf
 
     HEADING_TAGS = %w(h1 h2 h3 h4 h5 h6)
 
-    BLOCK_PASSTHROUGH_TAGS = %w(div table tbody thead tfoot tr)
+    BLOCK_PASSTHROUGH_TAGS = %w(div form table tbody thead tfoot tr)
 
-    BLOCK_INITIATING_TAGS = %w(article aside body header nav p section td th)
+    BLOCK_INITIATING_TAGS = %w(article aside body header nav p pre section td th)
 
     def self.from_html(text)
       iterate = lambda do |nodes, blocks, current_text|
@@ -107,9 +107,10 @@ module Nsf
       current_text = ""
 
       iterate.call(doc.root.children, blocks, current_text)
-      
-      #paragraph_text = current_text.gsub(/\s+/, ' ').strip
-      #blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
+
+      #Handle last paragraph of text
+      paragraph_text = current_text.gsub(/\s+/, ' ').strip
+      blocks << Paragraph.new(paragraph_text) if paragraph_text.present?
       
       Document.new(blocks)
     end
@@ -149,7 +150,7 @@ module Nsf
     end
 
     def to_nsf
-      @text
+      word_wrap(@text, 80)
     end
 
     def to_html
@@ -160,6 +161,14 @@ module Nsf
       out = out.gsub(/(\A\*| \*)(.*?)(\*\Z|\* )/, "<b>\\2</b>") #Need to rethink
       
       "<p>#{out}</p>"
+    end
+
+    private
+    #Sourced from ActionView::Helpers::TextHelper#word_wrap
+    def word_wrap(text, line_width)
+      text.split("\n").collect do |line|
+        line.length > line_width ? line.gsub(/(.{1,#{line_width}})(\s+|$)/, "\\1\n").strip : line
+      end * "\n"
     end
   end
 
