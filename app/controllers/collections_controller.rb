@@ -28,7 +28,7 @@ class CollectionsController < ApplicationController
 
   def update
     @collection = Collection.find(params[:id])
-    
+
     if @collection.update_attributes(params[:collection])
       Stories.collection = @collection
 

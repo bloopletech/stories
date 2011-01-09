@@ -97,6 +97,15 @@ CMD
       :content => Nsf::Document.from(text, is_html ? "html" : "text").to_nsf }
   end
 
+  STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
+
+  def self.wfa(text)
+    hash = Hash.new(1)
+    text.split(/\s/).each { |w| hash[w.to_ascii.gsub(/^[^A-z]/, '').gsub(/[^A-z]$/, '').gsub(/'[Ss]$/, '')] += 1 }
+    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || k.blank? }
+    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..20]
+  end
+
   private
   def update_stats
     self.word_count = content.split(/\s+/).length

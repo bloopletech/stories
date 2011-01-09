@@ -11,7 +11,7 @@
 
     = link_to(story, :target => "_blank") do
       = story_title(story)
-      = truncate(story.content, :length => 500)
+      = Story.wfa(story.content).join(" ")
 
     .info
       .stat

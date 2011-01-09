@@ -56,6 +56,8 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     nokogiri (1.4.4)
+    nsf (0.0.1)
+      nokogiri (>= 1.4.4)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -91,7 +93,7 @@ DEPENDENCIES
   formtastic!
   haml (= 3.0.22)
   mongrel (= 1.2.0.pre2)
-  nokogiri
+  nsf
   rack (= 1.2.1)
   rails (= 3.0.3)
   sqlite3-ruby
