@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
-  before_save :update_stats
+  before_save :update_autos
 
   def open
     increment!(:opens)
@@ -93,22 +93,35 @@ CMD
     text = File.read(real_path).to_utf8
     is_html = HTML_EXTS.include?(File.extname(real_path).downcase) || text.downcase.include?("<html>")
     
-    { :title => File.basename(real_path),
-      :content => Nsf::Document.from(text, is_html ? "html" : "text").to_nsf }
+    title = if is_html
+      prov = Nokogiri::HTML(text).css("title").first
+      prov ? prov.inner_text : File.basename(real_path)
+    else
+      File.basename(real_path)
+    end
+
+    { :title => title, :content => Nsf::Document.from(text, is_html ? "html" : "text").to_nsf }
   end
 
   STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
 
-  def self.wfa(text)
+  def self.wfa(text, exclusion_text)
+    exclusions = exclusion_text.split(/\s/).map { |e| wfa_preprocess(e) }
+
     hash = Hash.new(1)
-    text.split(/\s/).each { |w| hash[w.to_ascii.gsub(/^[^A-z]/, '').gsub(/[^A-z]$/, '').gsub(/'[Ss]$/, '')] += 1 }
-    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || k.blank? }
-    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..20]
+    text.split(/\s/).each { |w| hash[wfa_preprocess(w)] += 1 }
+    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
+    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..10]
   end
 
   private
-  def update_stats
+  def self.wfa_preprocess(text)
+    text.to_ascii.gsub(/^[^A-z]+/, '').gsub(/[^A-z]+$/, '').gsub(/'[Ss]$/, '')
+  end
+
+  def update_autos
     self.word_count = content.split(/\s+/).length
     self.byte_size = content.bytesize
+    self.most_frequent_words = Story.wfa(self.content, self.title).join(" ")
   end
 end

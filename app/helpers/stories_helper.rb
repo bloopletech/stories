@@ -15,7 +15,7 @@ module StoriesHelper
   end
 
   def story_title(story)
-    raw "<div class='title'>#{h wbrize(story.title)}</div>"
+    raw "<span class='title'>#{h wbrize(story.title)}</span>"
   end
 
   

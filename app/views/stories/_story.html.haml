@@ -11,7 +11,11 @@
 
     = link_to(story, :target => "_blank") do
       = story_title(story)
-      = Story.wfa(story.content).join(" ")
+      = story.most_frequent_words
+      %span.stat
+        = image_tag("icons/page_white_text.png", :title => "Size in words")
+        = number_with_delimiter(story.word_count)
+        words
 
     .info
       .stat
