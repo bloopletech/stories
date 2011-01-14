@@ -15,7 +15,11 @@ module StoriesHelper
   end
 
   def story_title(story)
-    raw "<span class='title'>#{h wbrize(story.title)}</span>"
+    wbrize(story.title.gsub(/\s+/, ' '))
+  end
+
+  def ic(icon, text)
+    "#{raw image_tag("icons/#{icon}.png")} #{text}".html_safe
   end
 
   

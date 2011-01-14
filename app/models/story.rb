@@ -36,6 +36,9 @@ class Story < ActiveRecord::Base
   end
   
   def self.import_directory(dir)
+    require 'fileutils'
+    FileUtils.rm_rf(Dir.glob("#{File.escape_name(dir)}/**/*_files"))
+    
     #Requires GNU find 3.8 or above
     cmd = <<-CMD
 cd #{File.escape_name(dir)} && find . \\( -type f \\( #{VALID_EXTS.map { |ext| "-iname '*#{ext}'" }.join(' -o ')} \\) \\)
@@ -93,14 +96,9 @@ CMD
     text = File.read(real_path).to_utf8
     is_html = HTML_EXTS.include?(File.extname(real_path).downcase) || text.downcase.include?("<html>")
     
-    title = if is_html
-      prov = Nokogiri::HTML(text).css("title").first
-      prov ? prov.inner_text : File.basename(real_path)
-    else
-      File.basename(real_path)
-    end
-
-    { :title => title, :content => Nsf::Document.from(text, is_html ? "html" : "text").to_nsf }
+    doc = Nsf::Document.from(text, is_html ? "html" : "text")
+    
+    { :title => (doc.title || File.basename(real_path) || "Unknown title"), :content => doc.to_nsf }
   end
 
   STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")

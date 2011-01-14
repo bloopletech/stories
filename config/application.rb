@@ -74,3 +74,5 @@ end
 require Rails.root.join('lib/file_extensions')
 require Rails.root.join('lib/string_extensions')
 require Rails.root.join('lib/numeric_extensions')
+
+Nsf::Document::TEXT_TAGS.delete('a')

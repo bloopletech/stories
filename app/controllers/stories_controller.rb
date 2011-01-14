@@ -108,6 +108,11 @@ class StoriesController < ApplicationController
 
   private
   def _process_edit_content
-    params[:story][:content] = Nsf::Document.from_text(params[:story][:content]).to_nsf if params[:story][:content]
+    if params[:story][:content]
+      doc = Nsf::Document.from_text(params[:story][:content].gsub(/\r?\n/, "\n"))
+
+      params[:story][:title] = doc.title
+      params[:story][:content] = doc.to_nsf
+    end
   end
 end
