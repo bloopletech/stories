@@ -27,10 +27,18 @@
 </div>
 
 <div class="clear"></div>
-<ul id="stories">
-  <% @stories.each do |b| %>
-  <%= render :partial => 'story', :locals => { :story => b } %>
-  <% end %>
+<table id="stories">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Keywords</td>
+      <td>Words</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => 'story', :collection => @stories %>
+  </tbody>
   <% if @stories.empty? %>
   <script type="text/javascript">
     last_page = true;

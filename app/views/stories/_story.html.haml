@@ -1,22 +1,18 @@
-%li{ :id => dom_id(story), :class => "page_#{@stories.current_page}" }
-  .wrapper
+%tr{ :id => dom_id(story), :class => "page_#{@stories.current_page} show-row", :'data-url' => url_for(story) }
+  %td.title= story_title(story)
+  %td.mfw= story.most_frequent_words
+  %td.word_count= number_with_delimiter(story.word_count)
+  %td.actions-emblems
     - many_opens = story.opens >= 10
-    .actions-emblems
-      - if many_opens
-        = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
+    - if many_opens
+      = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
 
+%tr{ :id => "#{dom_id(story)}_edit", :class => "edit-row" }
+  %td{ :colspan => 4 }
+    .actions
       = link_to(image_tag("icons/zoom.png", :title => "More information about this story"), more_info_story_path(story), :class => 'colorbox more-info action')
       = link_to(image_tag("icons/pencil.png", :title => 'Edit this story'), edit_story_path(story), :class => 'colorbox edit action')
       = link_to(image_tag("icons/delete.png", :title => 'Delete this story'), story_path(story), :method => 'delete', :confirm => "Are you sure you want to delete #{story.title}?", :remote => true, :class => 'action')
-
-    = link_to(story, :target => "_blank") do
-      = story_title(story)
-      = story.most_frequent_words
-      %span.stat
-        = image_tag("icons/page_white_text.png", :title => "Size in words")
-        = number_with_delimiter(story.word_count)
-        words
-
     .info
       .stat
         = image_tag("icons/application_go.png", :title => "Opens")
@@ -30,6 +26,6 @@
         = number_to_human_size(story.byte_size)
 
       .clear
-      .tag_list= h story.tag_list
-      = form_for story, :remote => true do |f|
-        = f.text_field :tag_list, :class => 'input'
+    .tag_list= h story.tag_list
+    = form_for story, :remote => true do |f|
+      = f.text_field :tag_list, :class => 'input'

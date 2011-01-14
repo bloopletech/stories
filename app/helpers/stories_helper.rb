@@ -15,7 +15,7 @@ module StoriesHelper
   end
 
   def story_title(story)
-    raw "<span class='title'>#{h wbrize(story.title)}</span>"
+    raw "<span class='title'>#{h wbrize(story.title.gsub(/\s+/, ' '))}</span>"
   end
 
   

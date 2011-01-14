@@ -1,5 +1,5 @@
 /* Shared */
-* { margin: 0; padding: 0; font: 16px/1.4em Georgia, Arial, sans-serif; }
+* { margin: 0; padding: 0; font: 16px/1.3em Georgia, Arial, sans-serif; }
 body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; }
 img { border: none; vertical-align: middle; }
 p, ul { margin-bottom: 1.4em; }
@@ -23,23 +23,22 @@ h2 { font-size: 25px; margin-bottom: 15px; }
 #tag_cloud .size_3 { font_size: 1.4em; }
 #tag_cloud .size_4 { font-size: 1.6em; }
 
-.title { font-weight: bold; }
-#stories { margin-left: 0; }
-#stories li {
- margin: 10px 0 10px 0;
- padding: 0 0 10px 0;
- border-bottom: 1px solid #303030;
- /*width: 390px;
- height: 200px;
- float: left;
- padding: 0 0 20px 0;*/
- list-style-type: none;
- position: relative;
-}
-/*
-#stories li:nth-child(odd) { padding-right: 20px; }*/
+#stories { border-collapse: collapse; }
+#stories td { border: 1px solid #808080; padding: 5px; vertical-align: top; }
 
-#stories li:nth-child(odd) { /*background-image: url(/images/shaded.png);*/ }
+#stories td:first-child { border-left: 0; }
+#stories td:last-child { border-right: 0; }
+#stories thead tr:first-child td { border-top: 0; }
+#stories tr:last-child td { border-bottom: 0; }
+
+#stories tbody tr { background-color: #ffffff; }
+#stories tbody tr:nth-child(4n+3) { background-color: #eeeeee; }
+
+#stories thead td { font-weight: normal; text-align: center; background-color: #000000; color: #ffffff; }
+#stories tr.edit-row { display: none; }
+
+#stories td.title { width: 250px; }
+
 #stories li .actions-emblems { display: block; position: absolute; top: 0; right: 0; padding: 1px; line-height: 0; background-color: #ffffff; }
 #stories li .actions-emblems .action { display: none; }
 #stories li .wrapper > a { color: #000000; text-decoration: none; }
@@ -54,13 +53,12 @@ h2 { font-size: 25px; margin-bottom: 15px; }
 #stories .info { margin-top: 5px; }
 #stories .info .stat { float: left; padding-right: 15px; }
 
-#stories li:hover { }
+#stories tr:hover { cursor: pointer; background-color: #cdcdcd; }
 #stories li:hover span.stat { display: none; }
 #stories li:hover .wrapper {}
 #stories li:hover .actions-emblems .action { display: inline; }
 #stories li:hover .info { display: block; }
 
-#story .title_image { float: left; margin-right: 15px; }
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
 
