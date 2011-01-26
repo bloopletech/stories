@@ -105,3 +105,19 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 .stats-wrapper { margin: 20px 0; }
 .stats-wrapper .chart { float: left; }
 .stats-wrapper .stats { padding-left: 20px; }
+
+
+@media screen and (max-width: 800px) {
+  html, body, #wrapper {
+    background: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  #wrapper { padding: 10px; }
+}
+
+
