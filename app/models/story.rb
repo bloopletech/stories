@@ -84,6 +84,7 @@ CMD
     if File.extname(real_path).downcase == '.zip'
       system("unzip #{File.escape_name(real_path)} -d #{File.escape_name(temp_dir)}")
       import_directory(temp_dir)
+      FileUtils.rm(real_path) if File.exists?(real_path)
     end
     #elsif RAR_EXTS.include?(File.extname(real_path))
     #  system("cd #{File.escape_name(destination_dir)} && unrar e #{File.escape_name(real_path)}")
