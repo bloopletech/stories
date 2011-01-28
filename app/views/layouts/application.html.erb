@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="" id="<%= "#{controller.controller_name}-#{controller.action_name}" %>">
   <head>
-    <title><%= @title ? "#{@title}: " : "" %>Story Reader</title>
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <%= stylesheet_link_tag %w(style colorbox formtastic formtastic_changes) %>
-    <%= javascript_include_tag 'lib/jquery-1.4.4', 'lib/rails', 'lib/jrails', 'lib/jquery.ba-bbq', 'lib/jquery.colorbox', 'lib/raphael.js', 'lib/g.raphael.js', 'lib/g.pie.js', 'application' %>
-    <%= csrf_meta_tag %>
-    <meta name="HandheldFriendly" content="true" />
-    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
-    <%= yield :head %>
+    <%= render :partial => 'layouts/header' %>
   </head>
   <body>
-    <div id="system-actions">
+    <div id="system-actions" class="desktop-only">
       <%= link_to(image_tag('icons/disk_multiple.png'), collections_path, :title => "Change Collection") %>
       <%= link_to(image_tag('icons/door_in.png'), quit_stories_path, :title => "Quit Story Reader", :confirm => "Are you sure you want to quit the Story Reader?", :id => "off") %>
     </div>

@@ -55,6 +55,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 
 #stories { list-style-type: none; margin: 0; }
 #stories li { border-bottom: 1px solid #000000; margin: 0; padding: 15px 0 15px 0; }
+#stories li:hover { cursor: pointer; }
 
 #stories li > a { color: #000000; text-decoration: none; vertical-align: middle; }
 #stories li > a span { vertical-align: middle; }
@@ -85,29 +86,12 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
 
-
-/*
-#stories-index body {
- background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    color-stop(0.39, rgb(0,0,0)),
-    color-stop(0.73, rgb(46,46,46))
-);
- background-image: -moz-linear-gradient(
-    left top,
-    rgb(0,0,0) 39%,
-    rgb(46,46,46) 73%
-);
-}*/
-
 .stats-wrapper { margin: 20px 0; }
 .stats-wrapper .chart { float: left; }
 .stats-wrapper .stats { padding-left: 20px; }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 844px) {
   html, body, #wrapper {
     background: none;
     width: auto;
@@ -117,7 +101,6 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  #wrapper { padding: 10px; }
+  #wrapper { padding: 22px; }
+  .desktop-only { display: none; }
 }
-
-

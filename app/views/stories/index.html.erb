@@ -16,7 +16,7 @@
     <%= link_to("Clear search", stories_path) %>
   <% end %>
 
-  <div id="actions">
+  <div id="actions" class="desktop-only">
     <%= link_to("Add a story", new_story_path) %>
     <%= link_to("Tag cloud", {}, :id => 'tag_cloud_link') %>
     <%= link_to(image_tag("icons/information.png") + "Info", info_stories_path, :id => 'stories_info') %>

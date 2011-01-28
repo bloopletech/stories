@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="">
   <head>
-    <title>Story Reader</title>
-    <%= stylesheet_link_tag %w(style colorbox formtastic formtastic_changes) %>
-    <%= javascript_include_tag 'lib/jquery-1.4.4', 'lib/rails', 'lib/jrails', 'lib/jquery.ba-bbq', 'lib/jquery.colorbox', 'lib/raphael.js', 'lib/g.raphael.js', 'lib/g.pie.js', 'application' %>
-    <%= csrf_meta_tag %>
+    <%= render :partial => 'layouts/header' %>
   </head>
   <body>
     <%= yield %>

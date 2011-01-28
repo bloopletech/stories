@@ -37,9 +37,9 @@ $(function()
     $("#tag_cloud").hide();
   });
 
-  $("tr.show-row").live('click', function()
+  $("#stories li").live('click', function()
   {
-    window.open($(this).data('url'), "story_reader_" + $(this).data('url'));
+    window.open("/stories/" + $(this).data('story-id'), "story_reader_" + $(this).data('story-id'));
   });
 
   $("#stories .colorbox.more-info").colorbox({ width: 590, height: 390 });

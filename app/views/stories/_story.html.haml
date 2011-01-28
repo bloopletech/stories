@@ -1,4 +1,4 @@
-%li{ :id => dom_id(story), :class => "page_#{@stories.current_page}" }
+%li{ :id => dom_id(story), 'data-story-id' => story.id, :class => "page_#{@stories.current_page}" }
   .emblems
     - many_opens = story.opens >= 10
     - if many_opens
