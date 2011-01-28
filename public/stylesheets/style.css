@@ -55,7 +55,6 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 
 #stories { list-style-type: none; margin: 0; }
 #stories li { border-bottom: 1px solid #000000; margin: 0; padding: 15px 0 15px 0; }
-#stories li:hover { cursor: pointer; }
 
 #stories li > a { color: #000000; text-decoration: none; vertical-align: middle; }
 #stories li > a span { vertical-align: middle; }
@@ -77,7 +76,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #stories .info { margin-top: 5px; }
 #stories .info .stat { float: left; padding-right: 15px; }
 
-#stories tr:hover { cursor: pointer; background-color: #cdcdcd; }
+#stories li:hover { cursor: pointer; }
 #stories li:hover span.stat { display: none; }
 #stories li:hover .wrapper {}
 #stories li:hover .actions-emblems .action { display: inline; }

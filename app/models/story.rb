@@ -21,8 +21,8 @@ class Story < ActiveRecord::Base
 
   COMPRESSED_FILE_EXTS = %w(.zip)
   HTML_EXTS = %w(.htm .html)
-  KRAMDOWN_EXTS = %w(.txt)
-  ORDINARY_FILE_EXTS = HTML_EXTS + KRAMDOWN_EXTS
+  NSF_EXTS = %w(.txt)
+  ORDINARY_FILE_EXTS = HTML_EXTS + NSF_EXTS
   VALID_EXTS = COMPRESSED_FILE_EXTS + ORDINARY_FILE_EXTS #Add rtf later
 
   #Iterate recursively over all files/dirs

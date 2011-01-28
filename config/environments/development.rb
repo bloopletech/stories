@@ -19,5 +19,5 @@ Stories::Application.configure do
 
   config.active_support.deprecation = :log
   
-  config.log_level = :info
+  config.log_level = :debug
 end

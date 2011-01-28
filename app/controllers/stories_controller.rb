@@ -18,8 +18,20 @@ class StoriesController < ApplicationController
 
       c = Story.connection
       #This next part makes me want to become an hero
-      search_inc = included_tags.empty? ? nil : included_tags.map { |t| "stories.title LIKE #{c.quote "%#{t}%"}" }.join(" AND ")
-      search_ex = excluded_tags.empty? ? nil : excluded_tags.map { |t| "NOT stories.title LIKE #{c.quote "%#{t}%"}" }.join(" AND ")
+      search_inc = if included_tags.empty?
+        nil
+      else
+        included_tags.map do |t|
+          "stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?".gsub("?", c.quote("%#{t}%"))
+        end.join(" AND ")
+      end
+      search_ex = if excluded_tags.empty?
+        nil
+      else
+        excluded_tags.map do |t|
+          "(NOT (stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?))".gsub("?", c.quote("%#{t}%"))
+        end.join(" AND ")
+      end
       
       results.where_values = ["(#{(results.where_values + [search_ex]).compact.map { |w| "(#{w})" }.join(" AND ")})" +
        (search_inc.nil? ? "" : " OR (#{search_inc})")]
