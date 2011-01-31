@@ -71,6 +71,8 @@ module Stories
   end
 end
 
+require Rails.root.join("config/version")
+
 require Rails.root.join('lib/file_extensions')
 require Rails.root.join('lib/string_extensions')
 require Rails.root.join('lib/numeric_extensions')

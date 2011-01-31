@@ -8,3 +8,9 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 Rails::Application.load_tasks
+
+
+require 'bundler'
+namespace 'gem' do
+  Bundler::GemHelper.install_tasks
+end
