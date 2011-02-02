@@ -102,4 +102,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
   }
   #wrapper { padding: 22px; }
   .desktop-only { display: none; }
+
+  * { font-size: 14px; }
+  p { margin: 0; }
 }
