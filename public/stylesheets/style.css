@@ -85,10 +85,11 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
 
+#stories-show #previous-page, #stories-show #next-page { display: none; }
+
 .stats-wrapper { margin: 20px 0; }
 .stats-wrapper .chart { float: left; }
 .stats-wrapper .stats { padding-left: 20px; }
-
 
 @media screen and (max-width: 844px) {
   html, body, #wrapper {
@@ -100,9 +101,13 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  #wrapper { padding: 22px; }
+  #wrapper { padding: 5px; }
   .desktop-only { display: none; }
 
   * { font-size: 14px; }
   p { margin: 0; }
+
+  #stories-show body { overflow: hidden; }
+  #stories-show #previous-page { display: block; position: absolute; left: 0; right: 0; top: 0; height: 100px; }
+  #stories-show #next-page { display: block; position: absolute; left: 0; right: 0; bottom: 0; height: 100px; }
 }

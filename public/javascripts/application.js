@@ -1,9 +1,13 @@
 function scrollDistanceFromBottom() {
-  return pageHeight() - (window.pageYOffset + self.innerHeight);
+  return pheight() - (window.pageYOffset + self.innerHeight);
 }
 
-function pageHeight() {
+function pheight() {
   return $("body").height();
+}
+
+function vheight() {
+  return $(window).height();
 }
 
 //Sourced from http://g.raphaeljs.com/piechart2.html

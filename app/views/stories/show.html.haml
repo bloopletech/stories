@@ -1,3 +1,9 @@
+- content_for :head do
+  = javascript_include_tag 'story'
+
+#previous-page
+#next-page
+
 -#
   %ul#nav
     %li= link_to("Edit Story", edit_story_path(@story))
