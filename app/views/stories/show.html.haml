@@ -4,9 +4,10 @@
 #previous-page
 #next-page
 
--#
-  %ul#nav
-    %li= link_to("Edit Story", edit_story_path(@story))
-    %li= link_to("Delete Story", story_path(@story), :method => :delete, :confirm => 'Are you sure?')
-  .clear
+%ul#nav
+  %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
+  %li= link_to(ic('pencil', "Edit"), edit_story_path(@story))
+  %li= link_to(ic('delete', "Delete"), story_path(@story), :method => :delete, :confirm => 'Are you sure?')
+.clear
+
 = raw Nsf::Document.from_nsf(@story.content).to_html

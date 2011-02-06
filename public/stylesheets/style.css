@@ -13,12 +13,28 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #search { width: 300px; }
 #actions { float: right; }
 
-#nav { list-style-type: none; }
+#nav { list-style-type: none; margin: -22px; }
 #nav li {
  display: block;
  float: right;
- padding: 0 5px;
- margin-bottom: 10px;
+}
+#nav li:last-child {
+
+}
+#nav li a {
+ display: block;
+ padding: 5px 8px;
+ text-decoration: none;
+ color: #000000;
+}
+#nav li:hover {
+ background-color: #000000;
+}
+#nav li:hover a {
+ color: #ffffff;
+}
+#nav li a, #nav li a span {
+ vertical-align: middle;
 }
 
 #system-actions {
@@ -54,7 +70,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #tag_cloud .size_4 { font-size: 1.6em; }
 
 #stories { list-style-type: none; margin: 0; }
-#stories li { border-bottom: 1px solid #000000; margin: 0; padding: 15px 0 15px 0; }
+#stories li { border-bottom: 1px solid #c0c0c0; margin: 0; padding: 5px 0 5px 0; white-space: nowrap; overflow: hidden; }
 
 #stories li > a { color: #000000; text-decoration: none; vertical-align: middle; }
 #stories li > a span { vertical-align: middle; }
@@ -76,7 +92,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #stories .info { margin-top: 5px; }
 #stories .info .stat { float: left; padding-right: 15px; }
 
-#stories li:hover { cursor: pointer; }
+#stories li:hover { cursor: pointer; white-space: normal; }
 #stories li:hover span.stat { display: none; }
 #stories li:hover .wrapper {}
 #stories li:hover .actions-emblems .action { display: inline; }
@@ -86,6 +102,7 @@ h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal;
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
 
 #stories-show #previous-page, #stories-show #next-page { display: none; }
+#stories-show nav { }
 
 .stats-wrapper { margin: 20px 0; }
 .stats-wrapper .chart { float: left; }

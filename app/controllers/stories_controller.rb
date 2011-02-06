@@ -17,19 +17,20 @@ class StoriesController < ApplicationController
       results = results.tagged_with(included_tags) unless included_tags.empty?
 
       c = Story.connection
+
       #This next part makes me want to become an hero
       search_inc = if included_tags.empty?
         nil
       else
         included_tags.map do |t|
-          "stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?".gsub("?", c.quote("%#{t}%"))
+          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ?)".gsub("?", c.quote("%#{t}%"))
         end.join(" AND ")
       end
       search_ex = if excluded_tags.empty?
         nil
       else
         excluded_tags.map do |t|
-          "(NOT (stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?))".gsub("?", c.quote("%#{t}%"))
+          "(NOT (stories.title LIKE ? OR stories.most_frequent_words LIKE ?))".gsub("?", c.quote("%#{t}%"))
         end.join(" AND ")
       end
       

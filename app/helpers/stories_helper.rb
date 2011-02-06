@@ -19,7 +19,7 @@ module StoriesHelper
   end
 
   def ic(icon, text)
-    "#{raw image_tag("icons/#{icon}.png")} #{text}".html_safe
+    "#{raw image_tag("icons/#{icon}.png")} <span>#{text}</span>".html_safe
   end
 
   
