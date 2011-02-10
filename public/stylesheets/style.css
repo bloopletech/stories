@@ -4,7 +4,7 @@ body { color: #000000; background: url(/images/background.jpg) top center no-rep
 img { border: none; vertical-align: middle; }
 h1, p, ul { margin-bottom: 1.45em; }
 ul { margin-left: 30px; }
-h1 { font-size: 36px; margin-bottom: 1em; text-align: left; font-weight: normal; }
+h1 { font-size: 28px; margin-bottom: 1em; text-align: left; font-weight: normal; }
 /*h2 { font-size: 25px; margin-bottom: 15px; }*/
 
 .clear { clear: both; }
