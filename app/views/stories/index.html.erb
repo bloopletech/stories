@@ -2,6 +2,13 @@
   <%= javascript_include_tag 'index', 'endless_scroll' %>
 <% end %>
 
+<ul id="nav">
+  <li><%= link_to(ic('pencil_add', "Add a story"), new_story_path) %></li>
+  <li><%= link_to(ic('add', "Import and Update"), import_and_update_stories_path, :method => 'get', :remote => true) %></li>
+  <li><%= link_to(ic("information", "Info"), info_stories_path, :id => 'stories_info') %></li>
+</ul>
+<div class="clear"></div>
+
 <div id="tag_cloud" style="display: none;">
   <% tag_cloud(@tags, %w(size_1 size_2 size_3 size_4)) do |tag, css_class| %>
   <%= link_to tag.name, stories_path(params.except(:controller, :action).merge(:search => tag.name)), :class => css_class, :title => pluralize(tag.count, "Occurence") %>
@@ -15,13 +22,11 @@
     <%= select_tag 'sort_direction', options_for_select([['Descending', 'DESC'], ['Ascending', 'ASC']], params[:sort_direction]) %>
     <%= link_to("Clear search", stories_path) %>
   <% end %>
-
+  <!--
   <div id="actions" class="desktop-only">
-    <%= link_to("Add a story", new_story_path) %>
     <%= link_to("Tag cloud", {}, :id => 'tag_cloud_link') %>
-    <%= link_to(image_tag("icons/information.png") + "Info", info_stories_path, :id => 'stories_info') %>
-    <%= link_to(image_tag("icons/add.png") + "Import and Update", import_and_update_stories_path, :method => 'get', :remote => true) %>
   </div>
+  -->
 </div>
 
 <div class="clear"></div>

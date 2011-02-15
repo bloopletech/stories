@@ -1,7 +1,4 @@
-= semantic_form_for @story do |f|
-  = f.inputs do
-    = f.input :title, { :hint => "Will be updated automatically from the content", :input_html => { :disabled => true } }
-    = f.input :content
-
-  = f.buttons do
-    = f.commit_button
+= form_for @story do |f|
+  = f.text_area :content
+  = f.submit
+  .clear
