@@ -3,7 +3,7 @@ class Story < ActiveRecord::Base
 
   validates_presence_of :title, :content
 
-  before_save :update_autos
+  before_save :update_autos, :if => lambda { |story| story.content_changed? }
 
   def open
     increment!(:opens)

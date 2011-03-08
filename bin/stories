@@ -1,3 +1,20 @@
 #!/bin/bash
 
-(set -e; cd `dirname $0`; bundle exec rails server -p 30814 -d >/dev/null 2>&1; (xdg-open 'http://localhost:30814/' || open 'http://localhost:30814');)
+(
+set -e
+
+cd `dirname $0/..`
+
+which rvm >/dev/null
+if [[ $? == '0' ]]; then
+  CMD='rvm --with-rubies default-with-rvmrc exec'
+else
+  CMD=''
+fi
+
+echo "--$CMD"
+
+$CMD bundle exec rails server -p 30814
+
+(xdg-open 'http://localhost:30814/' || open 'http://localhost:30814')
+)

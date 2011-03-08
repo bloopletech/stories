@@ -19,10 +19,10 @@ Stories::Application.configure do
   # just comment this out and Rails will serve the files
 
   # See everything in the log (default is :info)
-  config.log_level = :fatal
+  # config.log_level = :fatal
 
   # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
+  config.logger = nil
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
@@ -45,4 +45,6 @@ Stories::Application.configure do
   config.i18n.fallbacks = true
 
   config.active_support.deprecation = :notify
+
+   #config.middleware.use "Rack::RequestProfiler"
 end
