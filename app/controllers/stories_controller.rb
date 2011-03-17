@@ -1,46 +1,8 @@
 class StoriesController < ApplicationController
   def index
-    params[:sort] ||= 'created_at'
-    params[:sort_direction] ||= 'DESC'
-    @stories = if !params[:search].blank?
-      included_tags, excluded_tags = ActsAsTaggableOn::TagList.from(params[:search]).partition { |t| t.gsub!(/^-/, ''); $& != '-' }
+    _run_search
 
-      results = Story
-      
-      results = results.where("opens > 0") if included_tags.delete 's:read'
-      results = results.where("opens = 0") if included_tags.delete 's:unread'
-      #results = results.where("COUNT(taggings.id) > 0") if included_tags.delete 's:tagged'
-      
-
-
-      results = results.tagged_with(excluded_tags, :exclude => true) unless excluded_tags.empty?
-      results = results.tagged_with(included_tags) unless included_tags.empty?
-
-      c = Story.connection
-
-      #This next part makes me want to become an hero
-      search_inc = if included_tags.empty?
-        nil
-      else
-        included_tags.map do |t|
-          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ?)".gsub("?", c.quote("%#{t}%"))
-        end.join(" AND ")
-      end
-      search_ex = if excluded_tags.empty?
-        nil
-      else
-        excluded_tags.map do |t|
-          "(NOT (stories.title LIKE ? OR stories.most_frequent_words LIKE ?))".gsub("?", c.quote("%#{t}%"))
-        end.join(" AND ")
-      end
-      
-      results.where_values = ["(#{(results.where_values + [search_ex]).compact.map { |w| "(#{w})" }.join(" AND ")})" +
-       (search_inc.nil? ? "" : " OR (#{search_inc})")]
-
-      results
-    else
-      Story
-    end.order("#{params[:sort]} #{params[:sort_direction]}").paginate(:page => params[:page], :per_page => 30)
+    @stories = @stories.paginate(:page => params[:page], :per_page => 30)
     
     @tags = Story.tag_counts_on(:tags)
   end
@@ -90,6 +52,28 @@ class StoriesController < ApplicationController
     render :layout => 'secondary'
   end
 
+  def export
+    if params.key?(:mode) && params.key?(:format)
+      if params[:mode] == 'multiple'
+        _run_search
+        @stories.each { |s| s.export(params[:format]) }
+      else
+        @story = Story.find(params[:id])
+        @story.export(params[:format])
+      end
+
+      flash[:success] = "Export completed successfully."
+      self.formats = [:html, :js]
+      render :action => 'export_done'
+    else
+      render :action => 'export', :layout => 'secondary'
+    end
+  end
+
+  def export_done
+    render :action => 'export_done', :layout => 'secondary'
+  end
+
   
 
   
@@ -128,5 +112,49 @@ class StoriesController < ApplicationController
       params[:story][:title] = doc.title
       params[:story][:content] = doc.to_nsf
     end
+  end
+
+  def _run_search
+    params[:sort] ||= 'created_at'
+    params[:sort_direction] ||= 'DESC'
+    @stories = if !params[:search].blank?
+      included_tags, excluded_tags = ActsAsTaggableOn::TagList.from(params[:search]).partition { |t| t.gsub!(/^-/, ''); $& != '-' }
+
+      results = Story
+      
+      results = results.where("opens > 0") if included_tags.delete 's:read'
+      results = results.where("opens = 0") if included_tags.delete 's:unread'
+      #results = results.where("COUNT(taggings.id) > 0") if included_tags.delete 's:tagged'
+      
+
+
+      results = results.tagged_with(excluded_tags, :exclude => true) unless excluded_tags.empty?
+      results = results.tagged_with(included_tags) unless included_tags.empty?
+
+      c = Story.connection
+
+      #This next part makes me want to become an hero
+      search_inc = if included_tags.empty?
+        nil
+      else
+        included_tags.map do |t|
+          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ?)".gsub("?", c.quote("%#{t}%"))
+        end.join(" AND ")
+      end
+      search_ex = if excluded_tags.empty?
+        nil
+      else
+        excluded_tags.map do |t|
+          "(NOT (stories.title LIKE ? OR stories.most_frequent_words LIKE ?))".gsub("?", c.quote("%#{t}%"))
+        end.join(" AND ")
+      end
+      
+      results.where_values = ["(#{(results.where_values + [search_ex]).compact.map { |w| "(#{w})" }.join(" AND ")})" +
+       (search_inc.nil? ? "" : " OR (#{search_inc})")]
+
+      results
+    else
+      Story
+    end.order("#{params[:sort]} #{params[:sort_direction]}")
   end
 end

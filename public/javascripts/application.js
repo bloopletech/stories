@@ -1,3 +1,7 @@
+function nearBottomOfPage() {
+  return scrollDistanceFromBottom() < vheight();
+}
+
 function scrollDistanceFromBottom() {
   return pheight() - (window.pageYOffset + self.innerHeight);
 }
@@ -44,3 +48,10 @@ function pieify(div, title, keys, values)
     }
   });
 }
+
+$(function() {
+  $("#success a").click(function() {
+    $("#success").remove();
+    return false;
+  });
+});

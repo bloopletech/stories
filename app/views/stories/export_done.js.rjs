@@ -1,0 +1,2 @@
+page << 'window.parent.$("#stories_export").colorbox.close()'
+page << 'window.parent.location.reload()'

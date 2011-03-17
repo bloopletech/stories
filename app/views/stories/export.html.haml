@@ -1,0 +1,5 @@
+- url = params.except(:controller, :action).merge(:controller => 'stories', :action => 'export')
+%p Export as:
+%ul
+  %li= link_to(ic("page_white_world", "HTML"), params.merge(:format => 'html'), :method => 'get', :remote => true)
+  %li= link_to(ic("page_white_text", "Text"), params.merge(:format => 'text'), :method => 'get', :remote => true)

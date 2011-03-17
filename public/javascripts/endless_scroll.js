@@ -17,10 +17,6 @@ function checkScroll()
   }
 }
 
-function nearBottomOfPage() {
-  return scrollDistanceFromBottom() < 1000;
-}
-
 $(function()
 {
   setInterval("checkScroll()", 250);

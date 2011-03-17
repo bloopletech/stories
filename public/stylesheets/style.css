@@ -1,8 +1,8 @@
 /* Shared */
 * { margin: 0; padding: 0; font: 16px/1.45em 'HelveticaNeueLT Com 45 Lt', 'Helvetica Neue Light', 'Helvetice Neue', Helvetica, Arial, sans-serif; }
-body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; }
+body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; margin: 100px 0 100px 0; }
 img { border: none; vertical-align: middle; }
-h1, p, ul { margin-bottom: 1.45em; }
+h1, p, ul { margin-bottom: 0.75em; }
 ul { margin-left: 30px; }
 h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: normal; }
 /*h2 { font-size: 25px; margin-bottom: 15px; }*/
@@ -20,6 +20,12 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 }
 #nav li:last-child {
 
+}
+#nav li span {
+  display: none;
+}
+#nav li:hover span {
+  display: inline;
 }
 #nav li a {
  display: block;
@@ -51,15 +57,32 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #system-actions a { display: inline-block; width: 16px; height: 16px; line-height: 16px; }
 #system-actions img { display: block; }
 
+#success {
+  width: 822px;
+  margin: 0 auto 20px auto;
+  background-color: #ffffff;
+  border: 1px solid #008000;
+  padding: 10px;
+  color: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00A000), to(#008000));
+}
+
+#success img {
+  float: right;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
 #wrapper {
  width: 800px;
- margin: 100px auto 100px auto;
+ margin: 0 auto 0 auto;
  padding: 22px;
  background: #ffffff url(/images/page-background.jpg) top center no-repeat fixed;
  -moz-box-shadow: 0 0 15px 7px #111;;
  -webkit-box-shadow: 0 0 15px 7px #111;;
  box-shadow: 0 0 15px 7px #111;
 }
+
 
 /* List page only */
 
@@ -113,7 +136,7 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #stories-new input[type=submit], #stories-edit input[type=submit] { float: right; padding: 5px; font-weight: bold;; }
 
 @media screen and (max-width: 844px) {
-  html, body, #wrapper {
+  html.main, html.main body, html.main #wrapper {
     background: none;
     width: auto;
     margin: 0;
@@ -122,13 +145,16 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
     -webkit-box-shadow: none;
     box-shadow: none;
   }
-  #wrapper { padding: 5px; }
-  #nav, .desktop-only { display: none; }
 
-  * { font-size: 14px; }
-  p { margin: 0; }
-
-  #stories-show body { overflow: hidden; }
-  #stories-show #previous-page { display: block; position: absolute; left: 0; right: 0; top: 0; height: 100px; }
-  #stories-show #next-page { display: block; position: absolute; left: 0; right: 0; bottom: 0; height: 100px; }
+  html.main {
+    #wrapper { padding: 5px; }
+    #nav, .desktop-only { display: none; }
+  
+    * { font-size: 14px; }
+    p { margin: 0; }
+  
+    #stories-show body { overflow: hidden; }
+    #stories-show #previous-page { display: block; position: absolute; left: 0; right: 0; top: 0; height: 100px; }
+    #stories-show #next-page { display: block; position: absolute; left: 0; right: 0; bottom: 0; height: 100px; }
+  }
 }

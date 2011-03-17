@@ -10,11 +10,6 @@ class Story < ActiveRecord::Base
     update_attribute(:last_opened_at, DateTime.now)
   end
 
-  def delete_original
-    FileUtils.mkdir_p(File.dirname("#{Stories.deleted_dir}/#{path}"))
-    File.rename(real_path, "#{Stories.deleted_dir}/#{path}")
-  end
-
   def self.sort_key(title)
     title.gsub(/[^A-Za-z0-9]+/, '').downcase
   end
@@ -122,5 +117,35 @@ CMD
     self.word_count = content.split(/\s+/).length
     self.byte_size = content.bytesize
     self.most_frequent_words = Story.wfa(self.content, self.title).join(" ")
+  end
+
+  public
+  def export(format)
+    send("export_#{format}")
+  end
+
+  def export_html
+    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.html", "w") do |f|
+      f << <<-EOF
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>#{CGI.escapeHTML title}</title>
+  </head>
+  <body>
+    #{Nsf::Document.from_nsf(content).to_html}
+  </body>
+</html>
+EOF
+      f.flush
+    end
+  end
+
+  def export_text
+    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.txt", "w") do |f|
+      f << Nsf::Document.from_nsf(content).to_nsf
+      f.flush
+    end
   end
 end

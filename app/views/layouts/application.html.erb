@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="" id="<%= "#{controller.controller_name}-#{controller.action_name}" %>">
+<html xmlns="" id="<%= "#{controller.controller_name}-#{controller.action_name}" %>" class="main">
   <head>
     <%= render :partial => 'layouts/header' %>
   </head>
@@ -8,6 +8,12 @@
       <%= link_to(image_tag('icons/disk_multiple.png'), collections_path, :title => "Change Collection") %>
       <%= link_to(image_tag('icons/door_in.png'), quit_stories_path, :title => "Quit Story Reader", :confirm => "Are you sure you want to quit the Story Reader?", :id => "off") %>
     </div>
+    <% if flash[:success] %>
+      <div id="success">
+        <a href="/stories"><img src="/images/icons/accept.png"></a>
+        <%= flash[:success] %>
+      </div>
+    <% end %>
     <div id="wrapper">
       <%= yield %>
     </div>

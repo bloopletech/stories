@@ -45,4 +45,5 @@ $(function()
   $("#stories .colorbox.more-info").colorbox({ width: 590, height: 390 });
   $(".colorbox.edit").colorbox({ width: 855, height: 570, iframe: true });
   $("#stories_info").colorbox({ width: 800, height: 400, iframe: true });
+  $("#stories_export").colorbox({ width: 250, height: 200, iframe: true });
 });

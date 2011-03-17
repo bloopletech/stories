@@ -55,11 +55,14 @@ module Stories
   DEFAULT_DB_CONFIG = { :adapter => 'sqlite3', :pool => 5, :timeout => 5000 }
   COLLECTION_DB_CONFIG = DEFAULT_DB_CONFIG.merge(:database => File.expand_path("~/.stories.sqlite3"))
 
-  mattr_accessor :collection, :dir, :stories_dir
+  mattr_accessor :collection, :dir, :export_dir
 
   def self.configure(collection)
     Stories.collection = collection
     Stories.dir = collection.path
+    Stories.export_dir = "#{collection.path}/export"
+
+    Dir.mkdir(export_dir) unless File.exists?(export_dir)
     
     db_config = DEFAULT_DB_CONFIG.merge(:database => "#{Stories.dir}/stories-collection.sqlite3")
 
