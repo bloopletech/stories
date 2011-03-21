@@ -4,6 +4,10 @@ class Story < ActiveRecord::Base
   validates_presence_of :title, :content
 
   before_save :update_autos, :if => lambda { |story| story.content_changed? }
+  
+  def nsf
+    Nsf::Document.from_nsf(content)
+  end
 
   def open
     increment!(:opens)
@@ -134,7 +138,7 @@ CMD
     <title>#{CGI.escapeHTML title}</title>
   </head>
   <body>
-    #{Nsf::Document.from_nsf(content).to_html}
+    #{nsf.to_html}
   </body>
 </html>
 EOF
@@ -144,7 +148,14 @@ EOF
 
   def export_text
     File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.txt", "w") do |f|
-      f << Nsf::Document.from_nsf(content).to_nsf
+      f << nsf.to_nsf
+      f.flush
+    end
+  end
+
+  def export_rtf
+    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.rtf", "w") do |f|
+      f << nsf.to_rtf
       f.flush
     end
   end

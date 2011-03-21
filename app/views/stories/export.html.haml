@@ -3,3 +3,7 @@
 %ul
   %li= link_to(ic("page_white_world", "HTML"), params.merge(:format => 'html'), :method => 'get', :remote => true)
   %li= link_to(ic("page_white_text", "Text"), params.merge(:format => 'text'), :method => 'get', :remote => true)
+  %li= link_to(ic("page_white_word", "RTF"), params.merge(:format => 'rtf'), :method => 'get', :remote => true)
+
+- if params[:mode] == 'multiple'
+  %p= link_to(ic("compress", "Compress results"), "#")

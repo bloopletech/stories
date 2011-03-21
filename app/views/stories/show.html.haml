@@ -16,4 +16,4 @@
   %li= link_to(ic('delete', "Delete"), story_path(@story), :method => :delete, :confirm => 'Are you sure?')
 .clear
 
-= raw Nsf::Document.from_nsf(@story.content).to_html
+= raw @story.nsf.to_html
