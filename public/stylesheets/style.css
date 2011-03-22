@@ -21,12 +21,6 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #nav li:last-child {
 
 }
-#nav li span {
-  display: none;
-}
-#nav li:hover span {
-  display: inline;
-}
 #nav li a {
  display: block;
  padding: 5px 8px;
@@ -101,25 +95,8 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #stories li .icon:first-child { padding-left: 0; }
 /*#stories li > a > .word_count { padding-left: 19px; background-image: url(/images/icons/page_white_text.png); background-repeat: no-repeat; }*/
 #stories li > .emblems { display: block; position: absolute; top: 0; right: 0; padding: 1px; line-height: 0; background-color: #ffffff; }
-#stories li > .actions { display: none; }
 
-
-#stories li span.stat { margin-left: 5px; }
-#stories li .info { display: none; }
-#stories li .info img { vertical-align: middle; }
-#stories .tag_list { min-height: 1.2em; }
-#stories .tag_list:hover { background-color: #ffffaa; }
-#stories input { width: 100%; }
-#stories  form { display: none; }
-
-#stories .info { margin-top: 5px; }
-#stories .info .stat { float: left; padding-right: 15px; }
-
-#stories li:hover { cursor: pointer; white-space: normal; }
-#stories li:hover span.stat { display: none; }
-#stories li:hover .wrapper {}
-#stories li:hover .actions-emblems .action { display: inline; }
-#stories li:hover .info { display: block; }
+#stories li:hover { background-color: #eeeeee; }
 
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }

@@ -1,1 +1,1 @@
-page << "alert('Importing and updating now; refresh at will for the latest changes to your collection.');"
+page << "alert('Imported and updated; refresh for the latest changes to your collection.');"
