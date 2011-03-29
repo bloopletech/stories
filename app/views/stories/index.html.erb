@@ -34,15 +34,15 @@
 <ul id="stories">
   <%= render :partial => 'story', :collection => @stories %>
   <% if @stories.empty? %>
-  <script type="text/javascript">
-    last_page = true;
-  </script>
-  No results found.
+    <script type="text/javascript">
+      last_page = true;
+    </script>
+    No results found.
   <% elsif is_last_page?(@stories) %>
-  <script type="text/javascript">
-    last_page = true;
-  </script>
-  <%= render :partial => 'end_of_results' %>
+    <script type="text/javascript">
+      last_page = true;
+    </script>
+    <%= render :partial => 'end_of_results' %>
   <% end %>
 </ul>
 <div class="clear"></div>

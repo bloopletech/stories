@@ -1,20 +1,3 @@
-var update_stories = function()
-{
-  $("#stories .tag_list").each(function()
-  {
-    var div = $(this);
-    div.click(function(event)
-    {
-      div.next().show().find(".input").focus();
-      div.hide();
-    });
-
-    div.next().hide();
-  });
-};
-
-$(update_stories);
-
 $(function()
 {
   $("#sort, #sort_direction").delayedObserver(1.0, function()
@@ -35,11 +18,6 @@ $(function()
   $("#tag_cloud").mouseleave(function(event)
   {
     $("#tag_cloud").hide();
-  });
-
-  $("#stories li").live('click', function()
-  {
-    window.open("/stories/" + $(this).data('story-id'), "story_reader_" + $(this).data('story-id'));
   });
 
   $("#stories .colorbox.more-info").colorbox({ width: 590, height: 390 });

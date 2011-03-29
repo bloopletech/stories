@@ -3,6 +3,8 @@
 body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; margin: 100px 0 100px 0; }
 img { border: none; vertical-align: middle; }
 h1, p, ul { margin-bottom: 0.75em; }
+b { font-weight: bold; }
+i { font-style: italic; }
 ul { margin-left: 30px; }
 h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: normal; }
 /*h2 { font-size: 25px; margin-bottom: 15px; }*/
@@ -87,16 +89,16 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #tag_cloud .size_4 { font-size: 1.6em; }
 
 #stories { list-style-type: none; margin: 0; }
-#stories li { border-bottom: 1px solid #c0c0c0; margin: 0; padding: 5px 0 5px 0; white-space: nowrap; overflow: hidden; }
+#stories li { border-bottom: 1px solid #c0c0c0; margin: 0; display: block; }
 
-#stories li > a { color: #000000; text-decoration: none; vertical-align: middle; }
+#stories li > a, #stories li > div > div { white-space: nowrap; overflow: hidden; color: #000000; text-decoration: none; vertical-align: middle; display: block; padding: 5px 0 5px 0; position: relative; }
+#stories li > a > div { display: block; position: relative; }
 #stories li > a span { vertical-align: middle; }
-#stories li .icon { padding: 0 0px 0 10px; }
-#stories li .icon:first-child { padding-left: 0; }
-/*#stories li > a > .word_count { padding-left: 19px; background-image: url(/images/icons/page_white_text.png); background-repeat: no-repeat; }*/
-#stories li > .emblems { display: block; position: absolute; top: 0; right: 0; padding: 1px; line-height: 0; background-color: #ffffff; }
+#stories li > a > div img { padding: 0 0 0 10px; }
+#stories li > a > div img:first-child { padding-left: 0; }
+#stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; }
 
-#stories li:hover { background-color: #eeeeee; }
+#stories li:hover > a > div { background-color: #000000; color: #ffffff; }
 
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }

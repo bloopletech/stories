@@ -109,7 +109,7 @@ CMD
     hash = Hash.new(1)
     text.split(/\s/).each { |w| hash[wfa_preprocess(w)] += 1 }
     hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
-    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..10]
+    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..7]
   end
 
   private

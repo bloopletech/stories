@@ -1,20 +1,22 @@
-%li{ :id => dom_id(story), 'data-story-id' => story.id, :class => "page_#{@stories.current_page}" }
-  .emblems
-    - many_opens = story.opens >= 10
-    - if many_opens
-      = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
-
+%li{ :id => dom_id(story), :class => "page_#{@stories.current_page}" }
   = link_to(story, :target => '_blank') do
-    = image_tag('icons/page_white_text.png', :class => 'icon', :title => 'Story title')
-    %span.story_title= story_title(story)
-    = image_tag('icons/comments.png', :class => 'icon', :title => 'Most frequent words in story')
-    %span.mfw= wbrize(story.most_frequent_words)
-    = image_tag('icons/page_white_stack.png', :class => 'icon', :title => 'Word count of story')
-    %span.word_count= number_with_delimiter(story.word_count)
-    - unless story.tag_list.empty?
-      = image_tag('icons/tag_blue.png', :class => 'icon', :title => 'Story tags')
-      %span.tag_list= story.tag_list
-    = image_tag("icons/application_go.png", :class => 'icon', :title => "Opens")
-    %span= story.opens
-    = image_tag("icons/drive.png", :class => 'icon', :title => "Size in bytes")
-    %span= number_to_human_size(story.byte_size)
+    %div.wrapper
+      = image_tag('icons/page_white_text.png', :title => 'Story title')
+      %span= story_title(story)
+      = image_tag('icons/comments.png', :title => 'Most frequent words in story')
+      %span= wbrize(story.most_frequent_words)
+      = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
+      %span= number_with_delimiter(story.word_count)
+      - unless story.tag_list.empty?
+        = image_tag('icons/tag_blue.png', :title => 'Story tags')
+        %span= story.tag_list
+      = image_tag("icons/application_go.png", :title => "Opens")
+      %span= story.opens
+
+      .emblems
+        - many_opens = story.opens >= 10
+        - many_words = story.word_count > 30000
+        - if many_opens
+          = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
+        - if many_words
+          = image_tag("icons/book.png", :title => "Has 30,000 or more words")

@@ -1,5 +1,4 @@
 page.insert_html(:bottom, "stories", :partial => 'story', :collection => @stories)
-page << "update_stories()"
 page << <<-EOF
 $('li.page_#{@stories.current_page} a.colorbox').colorbox({ width: 590, height: 390 });
 EOF
