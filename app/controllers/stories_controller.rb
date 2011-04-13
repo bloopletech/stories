@@ -12,11 +12,15 @@ class StoriesController < ApplicationController
   end
 
   def create
+    @page_id = "stories-new"
+
     _process_edit_content
+
     @story = Story.new(params[:story])
 
     if @story.save
       flash[:success] = "Story successfully created"
+      redirect_to story_path(@story)
     else
       render :action => 'new'
     end
@@ -27,12 +31,15 @@ class StoriesController < ApplicationController
   end
 
   def update
+    @page_id = "stories-edit"
+
     _process_edit_content
-    @story = Story.find(params[:id])
+
+    @story = Story.find(params[:id])    
     if @story.update_attributes(params[:story])
-      render :action => request.xhr? ? 'update_fields' : 'update'
+      redirect_to story_path(@story)
     else
-      #boom
+      render :action => 'edit'
     end
   end
 
@@ -78,9 +85,11 @@ class StoriesController < ApplicationController
 
   
 
-  def import_and_update
+  def import
     #Thread.new do #Temporarily remopve threading as it seems to be causing import problems
-      Story.import_and_update
+      Story.import
+      flash[:success] = "Import completed successfully."
+      redirect_to :action => 'index'
     #end
   end
 

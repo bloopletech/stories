@@ -29,9 +29,9 @@ class Story < ActiveRecord::Base
   #Else if current item is a dir, and it contains images but no directories, store the dir name as the manga name as well as the load filename.
   #Else skip/recurse into dir.
   #Do not call more than once at a time
-  def self.import_and_update
-    import_directory(Stories.dir)
-    system("cd #{File.escape_name(Stories.dir)} && find . -depth -type d -empty -exec rmdir {} \\;")
+  def self.import
+    import_directory(Stories.import_dir)
+    system("cd #{File.escape_name(Stories.import_dir)} && find . -depth -type d -empty -exec rmdir {} \\;")
   end
   
   def self.import_directory(dir)
@@ -48,10 +48,10 @@ CMD
     path_list = IO.popen(cmd) { |s| s.read }
     path_list = path_list.split("\n").map { |e| e.gsub(/^\.\//, '') }.reject { |e| e[0, 1] == '.' }
 
-    path_list.each { |path| self.import("#{dir}/#{path}") }
+    path_list.each { |path| self.import_file("#{dir}/#{path}") }
   end
 
-  def self.import(real_path)
+  def self.import_file(real_path)
     last_modified = File.mtime(real_path)
 
     book = nil

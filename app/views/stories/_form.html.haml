@@ -1,4 +1,15 @@
 = form_for @story do |f|
+  - unless @story.errors.empty?
+    %div.errors
+      There were some errors:
+      %ul
+        - @story.errors.full_messages.each do |message|
+          %li= message
+
   = f.text_area :content
+
+  = f.label :tag_list
+  = f.text_field :tag_list
+  .clear
   = f.submit
   .clear

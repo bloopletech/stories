@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="" id="<%= "#{controller.controller_name}-#{controller.action_name}" %>" class="main">
+<html xmlns="" id="<%= @page_id || "#{controller.controller_name}-#{controller.action_name}" %>" class="main">
   <head>
     <%= render :partial => 'layouts/header' %>
   </head>
