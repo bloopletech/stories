@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module StoriesHelper
   include ActsAsTaggableOn::TagsHelper
 
@@ -22,7 +23,20 @@ module StoriesHelper
     "#{raw image_tag("icons/#{icon}.png")} <span>#{text}</span>".html_safe
   end
 
-  
+  def number_to_stars(num)
+    return "" if num < 0
+
+    case num
+    when 0..1999
+      "•"
+    when 2000..4999
+      "••"
+    when 5000..9999
+      "•••"
+    else
+      "••••"
+    end
+  end
 
   def fd_piechart(div, title, keys, values)
     return raw <<-EOF

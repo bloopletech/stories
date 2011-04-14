@@ -1,6 +1,6 @@
 /* Shared */
 * { margin: 0; padding: 0; font: 16px/1.45em 'HelveticaNeueLT Com 45 Lt', 'Helvetica Neue Light', 'Helvetice Neue', Helvetica, Arial, sans-serif; }
-body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; margin: 100px 0 100px 0; }
+body { color: #000000; background: url(/images/background.jpg) top center no-repeat fixed; padding: 50px 0 100px 0; }
 img { border: none; vertical-align: middle; }
 h1, p, ul { margin-bottom: 0.75em; }
 b { font-weight: bold; }
@@ -11,23 +11,33 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 
 .clear { clear: both; }
 
-#header { margin: 15px 0; }
+#header { margin: 0 0 15px 0; }
 #search { width: 300px; }
 #actions { float: right; }
 
-#nav { list-style-type: none; margin: -22px; }
+#nav-wrapper {
+ position: absolute;
+ left: 844px;
+ top: 5px;
+/* width: 150px;*/
+ background-color: #eeeeee;
+ z-index: -5;
+ border: 1px solid #303030;
+}
+
+#nav { list-style-type: none; margin: 0; }
 #nav li {
- display: block;
- float: right;
+display: block;
 }
 #nav li:last-child {
 
 }
 #nav li a {
  display: block;
- padding: 5px 8px;
+ padding: 5px 12px;
  text-decoration: none;
  color: #000000;
+ white-space: nowrap;
 }
 #nav li:hover {
  background-color: #000000;
@@ -55,7 +65,7 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 
 #success {
   width: 822px;
-  margin: 0 auto 20px auto;
+  margin: 0 0 20px 0;
   background-color: #ffffff;
   border: 1px solid #008000;
   padding: 10px;
@@ -70,8 +80,18 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 }
 
 #wrapper {
- width: 800px;
+ width: 844px;
  margin: 0 auto 0 auto;
+ position: relative;
+ z-index: 10;
+}
+
+#success + #content-wrapper { margin-top: 5px; }
+#success + #content-wrapper + #nav-wrapper { top: 70px; }
+
+#content-wrapper {
+ margin-top: 50px;
+ width: 800px;
  padding: 22px;
  background: #ffffff url(/images/page-background.jpg) top center no-repeat fixed;
  -moz-box-shadow: 0 0 15px 7px #111;;

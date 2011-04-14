@@ -134,6 +134,8 @@ class StoriesController < ApplicationController
       results = results.where("opens > 0") if included_tags.delete 's:read'
       results = results.where("opens = 0") if included_tags.delete 's:unread'
       #results = results.where("COUNT(taggings.id) > 0") if included_tags.delete 's:tagged'
+      results = results.where("word_count > 30000") if included_tags.delete 's:long'
+      results = results.where("word_count <= 30000") if included_tags.delete 's:short'
       
 
 

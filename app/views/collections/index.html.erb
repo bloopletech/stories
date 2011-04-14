@@ -1,3 +1,10 @@
+<% content_for :nav do %>
+  <ul id="nav">
+    <li><%= link_to ic("add", "Add collection"), collections_path, :method => :post %></li>
+  </ul>
+<% end %>
+
+<h1>Switch Between Collections</h1>
 <p>Please choose one of your collections, or add a collection to the list.</p>
 <ul>
   <% @collections.each do |c| %>
@@ -7,4 +14,3 @@
         <%= link_to(image_tag("icons/delete.png"), collection_path(c.id), :method => :delete) %></li>
   <% end %>
 </ul>
-<p><%= link_to image_tag("icons/add.png") + "Add collection...", collections_path, :method => :post %></p>

@@ -18,6 +18,30 @@ class Story < ActiveRecord::Base
     title.gsub(/[^A-Za-z0-9]+/, '').downcase
   end
 
+  STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
+
+  def self.wfa(text, exclusion_text)
+    exclusions = exclusion_text.split(/\s/).map { |e| wfa_preprocess(e) }
+
+    hash = Hash.new(1)
+    text.split(/\s/).each { |w| hash[wfa_preprocess(w)] += 1 }
+    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
+    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..7]
+  end
+
+  private
+  def self.wfa_preprocess(text)
+    text.to_ascii.gsub(/^[^A-z]+/, '').gsub(/[^A-z]+$/, '').gsub(/'[Ss]$/, '')
+  end
+
+  def update_autos
+    self.word_count = content.split(/\s+/).length
+    self.byte_size = content.bytesize
+    self.most_frequent_words = Story.wfa(self.content, self.title).join(" ")    
+  end
+
+  public
+
   COMPRESSED_FILE_EXTS = %w(.zip)
   HTML_EXTS = %w(.htm .html)
   NSF_EXTS = %w(.txt)
@@ -101,29 +125,6 @@ CMD
     { :title => (doc.title || File.basename(real_path) || "Unknown title"), :content => doc.to_nsf }
   end
 
-  STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
-
-  def self.wfa(text, exclusion_text)
-    exclusions = exclusion_text.split(/\s/).map { |e| wfa_preprocess(e) }
-
-    hash = Hash.new(1)
-    text.split(/\s/).each { |w| hash[wfa_preprocess(w)] += 1 }
-    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
-    hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..7]
-  end
-
-  private
-  def self.wfa_preprocess(text)
-    text.to_ascii.gsub(/^[^A-z]+/, '').gsub(/[^A-z]+$/, '').gsub(/'[Ss]$/, '')
-  end
-
-  def update_autos
-    self.word_count = content.split(/\s+/).length
-    self.byte_size = content.bytesize
-    self.most_frequent_words = Story.wfa(self.content, self.title).join(" ")
-  end
-
-  public
   def export(format)
     send("export_#{format}")
   end

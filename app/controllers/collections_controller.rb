@@ -22,8 +22,7 @@ class CollectionsController < ApplicationController
   end
 
   def edit
-    @collection = Collection.find(params[:id])
-    render :layout => 'secondary'
+    @collection = Collection.find(params[:id])    
   end
 
   def update
