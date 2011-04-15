@@ -5,11 +5,11 @@
       %span= story_title(story)
       = image_tag('icons/comments.png', :title => 'Most frequent words in story')
       %span= wbrize(story.most_frequent_words)
-      = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
-      %span= number_to_stars(story.word_count)
       - unless story.tag_list.empty?
         = image_tag('icons/tag_blue.png', :title => 'Story tags')
         %span= story.tag_list
+      = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
+      %span= number_to_stars(story.word_count)
       = image_tag("icons/application_go.png", :title => "Opens")
       %span= story.opens
 
