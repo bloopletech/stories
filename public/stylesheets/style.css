@@ -59,10 +59,9 @@ h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: norma
  position: absolute;
  left: 844px;
  top: 5px;
-/* width: 150px;*/
- background-color: #eeeeee;
  z-index: -5;
- border: 1px solid #303030;
+ background-color: #eeeeee;
+ brder: 1px solid #303030;
  -moz-box-shadow: 0 0 5px 3px #111;
  -webkit-box-shadow: 0 0 5px 3px #111;
  box-shadow: 0 0 5px 3px #111;
