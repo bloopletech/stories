@@ -68,7 +68,7 @@ module Stories
     
     db_config = DEFAULT_DB_CONFIG.merge(:database => "#{Stories.dir}/stories-collection.sqlite3")
 
-    ActiveRecord::Base.establish_connection(db_config)
+    ActiveRecord::Base.establish_connection(db_config)    
     ActiveRecord::Migrator.migrate("db/migrate/")
     ActiveRecord::Base.establish_connection(db_config)
 
