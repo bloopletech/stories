@@ -8,15 +8,14 @@
       - unless story.tag_list.empty?
         = image_tag('icons/tag_blue.png', :title => 'Story tags')
         %span= story.tag_list
-      = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
-      %span= number_to_stars(story.word_count)
+
       = image_tag("icons/application_go.png", :title => "Opens")
       %span= story.opens
 
       .emblems
+        = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
+        %span= number_to_stars(story.word_count)
         - many_opens = story.opens >= 10
         - many_words = story.word_count > 30000
         - if many_opens
           = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
-        - if many_words
-          = image_tag("icons/book.png", :title => "Has 30,000 or more words")

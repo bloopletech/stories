@@ -117,9 +117,10 @@ display: block;
 #stories li > a span { vertical-align: middle; }
 #stories li > a > div img { padding: 0 0 0 10px; }
 #stories li > a > div img:first-child { padding-left: 0; }
-#stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; }
+#stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; background-color: #eee; padding: 0 0 0 5px; }
 
 #stories li:hover > a > div { background-color: #000000; color: #ffffff; }
+#stories li:hover .emblems { background-color: #000000; color: #ffffff; }
 
 #story #info { float: left; width: 315px; }
 #story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }

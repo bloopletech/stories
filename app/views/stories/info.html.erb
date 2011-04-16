@@ -1,3 +1,5 @@
+<h1>Report on Your Collection of Stories</h1>
+
 <p>You have <%= pluralize(Story.count, 'story') %> and <%= pluralize(ActsAsTaggableOn::Tag.count, 'tag') %>.</p>
 
 <% unless Story.count.zero? %>
