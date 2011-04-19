@@ -1,8 +1,4 @@
-<% content_for :nav do %>
-  <ul id="nav">
-    <li><%= link_to ic("add", "Add collection"), collections_path, :method => :post %></li>
-  </ul>
-<% end %>
+<%= render :partial => 'nav' %>
 
 <h1>Switch Between Collections</h1>
 <p>Please choose one of your collections, or add a collection to the list.</p>

@@ -1,3 +1,5 @@
+= render :partial => 'single_nav'
+
 - content_for :head do
   :javascript
     story_url = "#{escape_javascript story_path(@story)}";
@@ -9,11 +11,6 @@
 #previous-page
 #next-page
 
-- content_for :nav do
-  %ul#nav
-    %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
-    %li= link_to(ic('pencil', "Edit"), edit_story_path(@story))
-    %li= link_to(ic('package_go', "Export"), export_story_path(params.except(:controller, :action).merge(:mode => 'single')), :id => 'story_export')
-    %li= link_to(ic('delete', "Delete"), story_path(@story), :method => :delete, :confirm => 'Are you sure?')
+
 
 = raw @story.nsf.to_html

@@ -1,0 +1,5 @@
+- content_for :nav do
+  %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
+  %li= link_to(ic('pencil', "Edit"), edit_story_path(@story))
+  %li= link_to(ic('package_go', "Export"), export_story_path(params.except(:controller, :action).merge(:mode => 'single')), :id => 'story_export')
+  %li= link_to(ic('delete', "Delete"), story_path(@story), :method => :delete, :confirm => 'Are you sure?')

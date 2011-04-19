@@ -2,14 +2,7 @@
   <%= javascript_include_tag 'index', 'endless_scroll' %>
 <% end %>
 
-<% content_for :nav do %>
-  <ul id="nav">
-    <li><%= link_to(ic('pencil_add', "Add a story"), new_story_path) %></li>
-    <li><%= link_to(ic('add', "Import"), import_stories_path, :method => 'get') %></li>
-    <li><%= link_to(ic('package_go', "Export"), export_stories_path(params.except(:controller, :action).merge(:mode => 'multiple')), :id => 'stories_export') %></li>
-    <li><%= link_to(ic("information", "Report"), info_stories_path) %></li>
-  </ul>
-<% end %>
+<%= render :partial => 'nav' %>
 
 <div id="tag_cloud" style="display: none;">
   <% tag_cloud(@tags, %w(size_1 size_2 size_3 size_4)) do |tag, css_class| %>
