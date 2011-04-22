@@ -1,21 +1,21 @@
 %li{ :id => dom_id(story), :class => "page_#{@stories.current_page}" }
   = link_to(story, :target => '_blank') do
     %div.wrapper
-      = image_tag('icons/page_white_text.png', :title => 'Story title')
+      = image_tag('icons/page_white_text.png', :title => 'Story title', :alt => 'Title')
       %span= story_title(story)
-      = image_tag('icons/comments.png', :title => 'Most frequent words in story')
+      = image_tag('icons/comments.png', :title => 'Most frequent words in story', :alt => 'Frequent Words')
       %span= wbrize(story.most_frequent_words)
       - unless story.tag_list.empty?
-        = image_tag('icons/tag_blue.png', :title => 'Story tags')
+        = image_tag('icons/tag_blue.png', :title => 'Story tags', :alt => 'Tags')
         %span= story.tag_list
 
-      = image_tag("icons/application_go.png", :title => "Opens")
+      = image_tag("icons/application_go.png", :title => "Opens", :alt => 'Opens')
       %span= story.opens
 
       .emblems
         - many_opens = story.opens >= 10
         - if many_opens
           = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
-        = image_tag('icons/page_white_stack.png', :title => 'Word count of story')
+        = image_tag('icons/page_white_stack.png', :title => 'Word count of story', :alt => 'Word count')
         %span= number_to_stars(story.word_count)
 

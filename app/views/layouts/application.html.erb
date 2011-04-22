@@ -3,12 +3,7 @@
   <head>
     <%= render :partial => 'layouts/header' %>
   </head>
-  <body>
-    <div id="system-actions" class="desktop-only">
-      <%= link_to(image_tag('icons/disk_multiple.png'), collections_path, :title => "Change Collection") %>
-      <%= link_to(image_tag('icons/door_in.png'), quit_stories_path, :title => "Quit Story Reader", :confirm => "Are you sure you want to quit the Story Reader?", :id => "off") %>
-    </div>
-
+  <body>    
     <div id="wrapper">
       <% if flash[:success] %>
         <div id="success">
@@ -27,6 +22,11 @@
         </ul>
         <div class="clear"></div>
       </div>
+    </div>
+
+    <div id="system-actions" class="desktop-only">
+      <%= link_to(image_tag('icons/disk_multiple.png', :alt => 'Change Collection'), collections_path, :title => "Change Collection") %>
+      <%= link_to(image_tag('icons/door_in.png', :alt => 'Quit'), quit_stories_path, :title => "Quit Story Reader", :confirm => "Are you sure you want to quit the Story Reader?", :id => "off") %>
     </div>
   </body>
 </html>
