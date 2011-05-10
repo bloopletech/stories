@@ -14,10 +14,6 @@ class Story < ActiveRecord::Base
     update_attribute(:last_opened_at, DateTime.now)
   end
 
-  def self.sort_key(title)
-    title.gsub(/[^A-Za-z0-9]+/, '').downcase
-  end
-
   STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
 
   def self.wfa(text, exclusion_text)
@@ -34,10 +30,15 @@ class Story < ActiveRecord::Base
     text.to_ascii.gsub(/^[^A-z]+/, '').gsub(/[^A-z]+$/, '').gsub(/'[Ss]$/, '')
   end
 
+  def self.sort_key(title)
+    title.gsub(/[^A-Za-z0-9]+/, '').downcase
+  end
+
   def update_autos
     self.word_count = content.split(/\s+/).length
     self.byte_size = content.bytesize
     self.most_frequent_words = Story.wfa(self.content, self.title).join(" ")    
+    self.sort_key = Story.sort_key(title)
   end
 
   public
@@ -94,7 +95,7 @@ CMD
     
     if book[:content].present?
       title = book[:title].gsub(/_/, ' ')
-      Story.create!(:title => title, :content => book[:content], :published_on => last_modified, :sort_key => Story.sort_key(title))
+      Story.create!(:title => title, :content => book[:content], :published_on => last_modified)
     end
 
     FileUtils.rm(real_path) if File.exists?(real_path)
@@ -129,9 +130,8 @@ CMD
     send("export_#{format}")
   end
 
-  def export_html
-    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.html", "w") do |f|
-      f << <<-EOF
+  def export_html    
+    out = <<-EOF
 <!DOCTYPE html>
 <html>
   <head>
@@ -143,21 +143,20 @@ CMD
   </body>
 </html>
 EOF
-      f.flush
-    end
+
+    FutureFile.new("#{File.sanitize_name(title)}_#{id}.html", out)
   end
 
   def export_text
-    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.txt", "w") do |f|
-      f << nsf.to_nsf
-      f.flush
-    end
+    FutureFile.new("#{File.sanitize_name(title)}_#{id}.txt", nsf.to_nsf)    
   end
 
   def export_rtf
-    File.open("#{Stories.export_dir}/#{File.sanitize_name(title)}_#{id}.rtf", "w") do |f|
-      f << nsf.to_rtf
-      f.flush
-    end
+    FutureFile.new("#{File.sanitize_name(title)}_#{id}.rtf", nsf.to_nsf)    
+  end
+
+  CSV_HEADER = ["Title", "Content", "Most Frequent Words", "Tags", "Opens", "Word Count", "Byte Size", "Last Opened At", "Published On", "Created At", "Updated At"]
+  def export_csv
+    [title, nsf.to_nsf, most_frequent_words, tag_list, opens, word_count, byte_size, last_opened_at.to_s, published_on.to_s, created_at.to_s, updated_at.to_s]
   end
 end

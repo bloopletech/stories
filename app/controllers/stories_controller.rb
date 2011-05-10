@@ -60,13 +60,30 @@ class StoriesController < ApplicationController
   end
 
   def export
+    exported = []
+
     if params.key?(:mode) && params.key?(:format)
       if params[:mode] == 'multiple'
         _run_search
-        @stories.each { |s| s.export(params[:format]) }
+        exported = @stories.map { |s| s.export(params[:format]) }
       else
         @story = Story.find(params[:id])
-        @story.export(params[:format])
+        exported = [@story.export(params[:format])]
+      end
+      
+      if params[:format] == 'csv'
+        require 'csv'
+        CSV.open("#{Stories.export_dir}/#{DateTime.now.to_s.gsub(' ', '_')}.csv", "w") do |csv|
+          csv << Story::CSV_HEADER
+          exported.each { |e| csv << e }
+        end
+      else
+        exported.each do |e|
+          File.new("#{Stories.export_dir}/#{e.filename}", "w") do |f|
+            f << e.content
+            f.flush
+          end
+        end
       end
 
       flash[:success] = "Export completed successfully."
