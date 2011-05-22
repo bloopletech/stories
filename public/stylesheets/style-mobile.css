@@ -17,3 +17,5 @@ html.main h1, html.main p, html.main ul { margin-bottom: 5px; }
 html.main#stories-show body { overflow: hidden; }
 html.main#stories-show #previous-page { display: block; position: absolute; left: 0; right: 0; top: 0; height: 100px; }
 html.main#stories-show #next-page { display: block; position: absolute; left: 0; right: 0; bottom: 0; height: 100px; }
+
+#stories li .emblems { background: #fff; }
