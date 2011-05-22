@@ -1,0 +1,19 @@
+html.main, html.main body, html.main #wrapper, html.main #content-wrapper {
+  background: none;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+html.main #content-wrapper { padding: 5px; }
+html.main #nav, html.main .desktop-only { display: none; }
+
+html.main * { font-size: 14px; }    
+html.main h1, html.main p, html.main ul { margin-bottom: 5px; }
+
+html.main#stories-show body { overflow: hidden; }
+html.main#stories-show #previous-page { display: block; position: absolute; left: 0; right: 0; top: 0; height: 100px; }
+html.main#stories-show #next-page { display: block; position: absolute; left: 0; right: 0; bottom: 0; height: 100px; }

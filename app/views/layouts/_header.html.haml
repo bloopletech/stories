@@ -1,6 +1,9 @@
 <meta charset="utf-8">
 <title>#{@title ? "#{@title}: " : ""}Story Reader</title>
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+= stylesheet_link_tag 'style'
+= stylesheet_link_tag 'style-mobile', :media => 'screen and (max-width: 844px)'
+= stylesheet_link_tag 'style-desktop', :media => 'screen and (min-width: 845px)'
 = stylesheet_link_tag %w(style colorbox formtastic formtastic_changes)
 = javascript_include_tag 'lib/jquery-1.4.4', 'lib/rails', 'lib/jrails', 'lib/jquery.ba-bbq', 'lib/jquery.colorbox', 'lib/raphael.js', 'lib/g.raphael.js', 'lib/g.pie.js', 'application'
 = csrf_meta_tag
