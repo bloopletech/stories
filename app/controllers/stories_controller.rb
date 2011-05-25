@@ -79,7 +79,7 @@ class StoriesController < ApplicationController
         end
       else
         exported.each do |e|
-          File.new("#{Stories.export_dir}/#{e.filename}", "w") do |f|
+          File.open("#{Stories.export_dir}/#{e.filename}", "w") do |f|
             f << e.content
             f.flush
           end
