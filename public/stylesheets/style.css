@@ -105,9 +105,9 @@ display: block;
 /* List page only */
 
 #tag_cloud { position: absolute; top: 0; right: 0; z-index: 1000; width: 500px; background-color: #ffffff; padding: 15px; }
-#tag_cloud .size_1 { font_size: 1.0em; }
-#tag_cloud .size_2 { font_size: 1.2em; }
-#tag_cloud .size_3 { font_size: 1.4em; }
+#tag_cloud .size_1 { font-size: 1.0em; }
+#tag_cloud .size_2 { font-size: 1.2em; }
+#tag_cloud .size_3 { font-size: 1.4em; }
 #tag_cloud .size_4 { font-size: 1.6em; }
 
 #stories { list-style-type: none; margin: 0; }

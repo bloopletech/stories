@@ -6,7 +6,7 @@
 
 <% unless Story.count.zero? %>
   <p>The oldest story was published on <%= link_to(@oldest_story.published_on, @oldest_story, :method => :get, :remote => true) %>
-  and the newest story was published <%= link_to(@newest_story.published_on, @newest_story, :method => :get, :remote => true) %>.</p>
+  and the newest story was published on <%= link_to(@newest_story.published_on, @newest_story, :method => :get, :remote => true) %>.</p>
 
   <div class="stats-wrapper">
     <div id="story_lengths" class="chart"></div>
