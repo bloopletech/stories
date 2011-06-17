@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   def index
     _run_search
 
-    @stories = @stories.paginate(:page => params[:page], :per_page => 30)
+    @stories = @stories.paginate(:page => params[:page], :per_page => 100)
     
     @tags = Story.tag_counts_on(:tags)
   end
