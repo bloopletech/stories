@@ -8,6 +8,8 @@ html.main, html.main body, html.main #wrapper, html.main #content-wrapper {
   box-shadow: none;
 }
 
+body { background-color: #ffffff; }
+
 html.main #content-wrapper { padding: 5px; }
 html.main #nav, html.main .desktop-only { display: none; }
 
