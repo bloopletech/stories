@@ -12,16 +12,11 @@
         </div>
       <% end %>
 
-      <div id="content-wrapper">
-        <%= yield %>
-      </div>
+      <ul id="nav">
+        <%= yield :nav %>
+      </ul>
 
-      <div id="nav-wrapper">
-        <ul id="nav">
-          <%= yield :nav %>
-        </ul>
-        <div class="clear"></div>
-      </div>
+      <%= yield %>
     </div>
 
     <div id="system-actions" class="desktop-only">

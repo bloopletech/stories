@@ -51,7 +51,10 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
-    # @story.open #Wierdly takes like 500ms
+    Thread.new do
+      sleep 1
+      @story.open
+    end
   end
 
   def more_info

@@ -1,6 +1,6 @@
 /* Shared */
 * { margin: 0; padding: 0; font: 16px/1.45em 'HelveticaNeueLT Com 45 Lt', 'Helvetica Neue Light', 'Helvetice Neue', Helvetica, Arial, sans-serif; }
-body { color: #000000; }
+body { color: #000000; padding: 15px; }
 img { border: none; vertical-align: middle; }
 h1, p, ul { margin-bottom: 0.75em; }
 b { font-weight: bold; }
@@ -18,8 +18,7 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: norma
  right: 20px;
  height: 16px;
  padding: 4px;
- background-color: #ffffff;
- border-radius: 0 0 4px 4px;
+ background-color: #808080;
  opacity: 0.3;
 }
 #system-actions:hover { opacity: 1; }
@@ -31,7 +30,6 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #actions { float: right; }
 
 #success {
-  width: 822px;
   margin: 0 0 20px 0;
   background-color: #ffffff;
   border: 1px solid #008000;
@@ -47,27 +45,9 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 }
 
 #wrapper {
- width: 844px;
- margin: 0 auto 0 auto;
- position: relative;
- z-index: 10;
 }
 
-#success + #content-wrapper { margin-top: 5px; }
-#success + #content-wrapper + #nav-wrapper { top: 70px; }
-
-#nav-wrapper {
- position: absolute;
- left: 844px;
- top: 5px;
- z-index: -5;
- background-color: #eeeeee;
- -moz-box-shadow: 0 0 8px 5px #111;
- -webkit-box-shadow: 0 0 8px 5px #111;
- box-shadow: 0 0 8px 5px #111;
-}
-
-#nav { list-style-type: none; margin: 0; }
+#nav { float: right; border: 1px solid #000000; list-style-type: none; margin: 0; margin-top: 20px; }
 #nav li {
 display: block;
 }
@@ -90,17 +70,6 @@ display: block;
 #nav li a, #nav li a span {
  vertical-align: middle;
 }
-
-#content-wrapper {
- margin-top: 50px;
- width: 800px;
- padding: 22px;
- background: #ffffff url(/images/page-background.jpg) top center no-repeat fixed;
- -moz-box-shadow: 0 0 15px 7px #111;;
- -webkit-box-shadow: 0 0 15px 7px #111;;
- box-shadow: 0 0 15px 7px #111;
-}
-
 
 /* List page only */
 
