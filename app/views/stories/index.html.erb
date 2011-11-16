@@ -15,7 +15,7 @@
     <%= text_field_tag 'search', params[:search] %>
     <%= select_tag 'sort', options_for_select([['Published', 'published_on'], ['Alphabetically', 'sort_key'], ['Last opened at', 'last_opened_at'], ['Date added', 'created_at'], ['Popularity', 'opens'], ['Word count', 'word_count']], params[:sort]) %>
     <%= select_tag 'sort_direction', options_for_select([['Descending', 'DESC'], ['Ascending', 'ASC']], params[:sort_direction]) %>
-    <%= link_to("Clear search", stories_path) %>
+    <%= link_to("Reset", stories_path) %>
   <% end %>
   <!--
   <div id="actions" class="desktop-only">

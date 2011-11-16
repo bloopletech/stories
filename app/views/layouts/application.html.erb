@@ -12,16 +12,12 @@
         </div>
       <% end %>
 
+      <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
       <ul id="nav">
         <%= yield :nav %>
       </ul>
 
       <%= yield %>
-    </div>
-
-    <div id="system-actions" class="desktop-only">
-      <%= link_to(image_tag('icons/disk_multiple.png', :alt => 'Change Collection'), collections_path, :title => "Change Collection") %>
-      <%= link_to(image_tag('icons/door_in.png', :alt => 'Quit'), quit_stories_path, :title => "Quit Story Reader", :confirm => "Are you sure you want to quit the Story Reader?", :id => "off") %>
     </div>
   </body>
 </html>
