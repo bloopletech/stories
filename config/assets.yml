@@ -1,0 +1,22 @@
+embed_assets: on
+
+javascripts:
+  common:
+    - public/javascripts/lib/jquery-1.7.js
+    - public/javascripts/lib/rails.js
+    - public/javascripts/lib/jrails.js
+    - public/javascripts/lib/jquery.colorbox.js
+    - public/javascripts/lib/raphael.js
+    - public/javascripts/lib/g.raphael.js
+    - public/javascripts/lib/g.pie.js
+    - public/javascripts/application.js
+    - public/javascripts/index.js
+    - public/javascripts/story.js
+
+stylesheets:
+  common:
+    - public/stylesheets/style.css
+    - public/stylesheets/colorbox.css
+    - public/stylesheets/formtastic.css
+    - public/stylesheets/formtastic_changes.css
+

@@ -10,6 +10,10 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -47,6 +51,8 @@ GEM
     gem_plugin (0.2.3)
     haml (3.0.22)
     i18n (0.5.0)
+    jammit (0.6.3)
+      yui-compressor (>= 0.9.3)
     mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -61,6 +67,7 @@ GEM
       clbustos-rtf (>= 0.1.0)
       nokogiri (>= 1.4.4)
       ruby-rtf (>= 0.0.0)
+    open4 (1.2.0)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.14)
@@ -88,6 +95,8 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
     will_paginate (3.0.pre)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
 
 PLATFORMS
   ruby
@@ -96,6 +105,7 @@ DEPENDENCIES
   acts-as-taggable-on (= 2.1.0)
   formtastic!
   haml (= 3.0.22)
+  jammit (= 0.6.3)
   mongrel (= 1.2.0.pre2)
   nsf
   rack (= 1.2.1)
