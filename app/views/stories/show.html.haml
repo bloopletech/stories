@@ -1,16 +1,2 @@
 = render :partial => 'single_nav'
-
-- content_for :head do
-  :javascript
-    story_url = "#{escape_javascript story_path(@story)}";
-    $(function() {
-      if(#{@story.offset} > 0) $(window).scrollTop(#{@story.offset});
-    });
-  = # javascript_include_tag 'story'
-
-#previous-page
-#next-page
-
-
-
 = raw @story.nsf.to_html

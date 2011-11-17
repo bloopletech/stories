@@ -89,12 +89,6 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 
 /* List page only */
 
-#tag_cloud { position: absolute; top: 0; right: 0; z-index: 1000; width: 500px; background-color: #ffffff; padding: 15px; }
-#tag_cloud .size_1 { font-size: 1.0em; }
-#tag_cloud .size_2 { font-size: 1.2em; }
-#tag_cloud .size_3 { font-size: 1.4em; }
-#tag_cloud .size_4 { font-size: 1.6em; }
-
 #stories { list-style-type: none; margin: 0; }
 #stories li { border-bottom: 1px solid #c0c0c0; margin: 0; display: block; }
 
@@ -104,6 +98,12 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: norma
 #stories li > a > div img { padding: 0 0 0 10px; }
 #stories li > a > div img:first-child { padding-left: 0; }
 #stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; background-color: #fff; padding: 0 0 0 5px; }
+
+#stories li span.title::before { content: url("/images/icons/page_white_text.png"); vertical-align: middle; padding: 0 3px 0 0; }
+#stories li span.mfw::before { content: url("/images/icons/comments.png"); vertical-align: middle; padding: 0 3px 0 10px; }
+#stories li span.tags::before { content: url("/images/icons/tag_blue.png"); vertical-align: middle; padding: 0 3px 0 10px; }
+#stories li span.opens::before { content: url("/images/icons/application_go.png"); vertical-align: middle; padding: 0 3px 0 10px; }
+#stories li span.wc::before { content: url("/images/icons/page_white_stack.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 
 #stories li:hover > a > div { background-color: #000000; color: #ffffff; }
 #stories li:hover .emblems { background-color: #000000; color: #ffffff; }

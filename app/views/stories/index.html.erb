@@ -1,14 +1,8 @@
 <% content_for :head do %>
-  <%= include_javascripts :light, :index %>  
+  <%= javascript_include_tag "story-index" %>  
 <% end %>
 
 <%= render :partial => 'nav' %>
-
-<div id="tag_cloud" style="display: none;">
-  <% tag_cloud(@tags, %w(size_1 size_2 size_3 size_4)) do |tag, css_class| %>
-  <%= link_to tag.name, stories_path(params.except(:controller, :action).merge(:search => tag.name)), :class => css_class, :title => pluralize(tag.count, "Occurence") %>
-  <% end %>
-</div>
 
 <div id="header">
   <%= form_tag(stories_path, { :method => :get, :id => 'search_form' }) do %>
@@ -17,26 +11,15 @@
     <%= select_tag 'sort_direction', options_for_select([['Descending', 'DESC'], ['Ascending', 'ASC']], params[:sort_direction]) %>
     <%= link_to("Reset", stories_path) %>
   <% end %>
-  <!--
-  <div id="actions" class="desktop-only">
-    <%= link_to("Tag cloud", {}, :id => 'tag_cloud_link') %>
-  </div>
-  -->
 </div>
 
 <div class="clear"></div>
 <ul id="stories">
   <%= render :partial => 'story', :collection => @stories %>
   <% if @stories.empty? %>
-    <script type="text/javascript">
-      last_page = true;
-    </script>
     No results found.
-  <% elsif is_last_page?(@stories) %>
-    <script type="text/javascript">
-      last_page = true;
-    </script>
-    <%= render :partial => 'end_of_results' %>
+  <% elsif @stories_count > 100 %>
+    There are more stories, restrict your search to see them.
   <% end %>
 </ul>
 <div class="clear"></div>

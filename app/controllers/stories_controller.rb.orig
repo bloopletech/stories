@@ -2,8 +2,15 @@ class StoriesController < ApplicationController
   def index
     _run_search
 
-    @stories_count = @stories.count
+<<<<<<< Updated upstream
+    @stories = @stories.paginate(:page => params[:page], :per_page => 100)
+    
+    @tags = Story.tag_counts_on(:tags)
+
+    self.formats = [:js, :html] if params[:page]
+=======
     @stories = @stories.limit(100)
+>>>>>>> Stashed changes
   end
 
   def new

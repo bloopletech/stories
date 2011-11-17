@@ -1,5 +1,0 @@
-page.insert_html(:bottom, "stories", :partial => 'story', :collection => @stories)
-if is_last_page?(@stories)
-  page << "last_page = true;"
-  page.insert_html(:bottom, "stories", :partial => 'end_of_results')
-end
