@@ -1,7 +1,4 @@
 page.insert_html(:bottom, "stories", :partial => 'story', :collection => @stories)
-page << <<-EOF
-$('li.page_#{@stories.current_page} a.colorbox').colorbox({ width: 590, height: 390 });
-EOF
 if is_last_page?(@stories)
   page << "last_page = true;"
   page.insert_html(:bottom, "stories", :partial => 'end_of_results')

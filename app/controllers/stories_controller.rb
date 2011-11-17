@@ -5,6 +5,8 @@ class StoriesController < ApplicationController
     @stories = @stories.paginate(:page => params[:page], :per_page => 100)
     
     @tags = Story.tag_counts_on(:tags)
+
+    self.formats = [:js, :html] if params[:page]
   end
 
   def new

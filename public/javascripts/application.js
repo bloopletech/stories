@@ -1,18 +1,4 @@
-function nearBottomOfPage() {
-  return scrollDistanceFromBottom() < vheight();
-}
 
-function scrollDistanceFromBottom() {
-  return pheight() - (window.pageYOffset + self.innerHeight);
-}
-
-function pheight() {
-  return $("body").height();
-}
-
-function vheight() {
-  return $(window).height();
-}
 
 //Sourced from http://g.raphaeljs.com/piechart2.html
 function pieify(div, title, keys, values)
@@ -53,11 +39,5 @@ $(function() {
   $("#success a").click(function() {
     $("#success").remove();
     return false;
-  });
-});
-
-$(function() {
-  $("#nav-show").click(function() {
-    $("#nav").toggle();
   });
 });

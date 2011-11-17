@@ -1,17 +1,27 @@
 embed_assets: on
 
 javascripts:
-  common:
+  light:
+    - public/javascripts/lib/zepto-0.8.js
+    - public/javascripts/zepto-to-jquery.js
+
+  heavy:
     - public/javascripts/lib/jquery-1.7.js
     - public/javascripts/lib/rails.js
     - public/javascripts/lib/jrails.js
     - public/javascripts/lib/jquery.colorbox.js
+
+  index:
+    - public/javascripts/endless-scroll.js
+    - public/javascripts/story-index.js
+
+  edit:
+    - public/javascripts/story-edit.js
+
+  graphs:
     - public/javascripts/lib/raphael.js
     - public/javascripts/lib/g.raphael.js
     - public/javascripts/lib/g.pie.js
-    - public/javascripts/application.js
-    - public/javascripts/index.js
-    - public/javascripts/story.js
 
 stylesheets:
   common:

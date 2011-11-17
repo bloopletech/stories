@@ -12,10 +12,12 @@
         </div>
       <% end %>
 
-      <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
-      <ul id="nav">
-        <%= yield :nav %>
-      </ul>
+      <div id="nav-wrapper">
+        <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
+        <ul id="nav">
+          <%= yield :nav %>
+        </ul>
+      </div>
 
       <%= yield %>
     </div>
