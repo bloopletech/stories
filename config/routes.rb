@@ -15,6 +15,4 @@ Stories::Application.routes.draw do |map|
   end
 
   root :to => "stories#index"
-
-  resources :collections
 end

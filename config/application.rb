@@ -51,29 +51,17 @@ module Stories
     config.filter_parameters += [:password]
   end
 
+  mattr_accessor :dir, :import_dir, :export_dir, :db_config
 
-  DEFAULT_DB_CONFIG = { :adapter => 'sqlite3', :pool => 5, :timeout => 5000 }
-  COLLECTION_DB_CONFIG = DEFAULT_DB_CONFIG.merge(:database => File.expand_path("~/.stories.sqlite3"))
+  Stories.dir = File.expand_path("~/.stories/")
 
-  mattr_accessor :collection, :dir, :import_dir, :export_dir
+  Dir.mkdir(dir) unless File.exists?(dir)
 
-  def self.configure(collection)
-    Stories.collection = collection
-    Stories.dir = collection.path
-    Stories.import_dir = "#{collection.path}/import"
-    Stories.export_dir = "#{collection.path}/export"
+  Stories.import_dir = "#{dir}/import"
+  Stories.export_dir = "#{dir}/export"
 
-    Dir.mkdir(import_dir) unless File.exists?(import_dir)
-    Dir.mkdir(export_dir) unless File.exists?(export_dir)
-    
-    db_config = DEFAULT_DB_CONFIG.merge(:database => "#{Stories.dir}/stories-collection.sqlite3")
-
-    ActiveRecord::Base.establish_connection(db_config)    
-    ActiveRecord::Migrator.migrate("db/migrate/")
-    ActiveRecord::Base.establish_connection(db_config)
-
-    collection.opened!
-  end
+  Dir.mkdir(import_dir) unless File.exists?(import_dir)
+  Dir.mkdir(export_dir) unless File.exists?(export_dir)
 end
 
 require Rails.root.join("config/version")

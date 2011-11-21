@@ -15,14 +15,6 @@ class Setup < ActiveRecord::Migration
       t.string   "sort_key"
     end
     
-    create_table "collections", :force => true do |t|
-      t.string   "path"
-      t.string   "config"
-      t.datetime "last_opened_at"
-      t.datetime "created_at"
-      t.datetime "updated_at"
-    end
-    
     create_table "taggings", :force => true do |t|
       t.integer  "tag_id"
       t.integer  "taggable_id"
