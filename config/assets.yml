@@ -12,7 +12,6 @@ javascripts:
     - public/javascripts/lib/jquery.colorbox.js
 
   index:
-    - public/javascripts/endless-scroll.js
     - public/javascripts/story-index.js
 
   edit:
@@ -22,6 +21,7 @@ javascripts:
     - public/javascripts/lib/raphael.js
     - public/javascripts/lib/g.raphael.js
     - public/javascripts/lib/g.pie.js
+    - public/javascripts/story-reports.js
 
 stylesheets:
   light:

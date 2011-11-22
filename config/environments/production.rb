@@ -22,7 +22,7 @@ Stories::Application.configure do
   # config.log_level = :fatal
 
   # Use a different logger for distributed setups
-  config.logger = nil
+  # config.logger = nil
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
