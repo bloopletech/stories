@@ -17,10 +17,12 @@ class Story < ActiveRecord::Base
   STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
 
   def self.wfa(text, exclusion_text)
-    exclusions = exclusion_text.split(/\s/).map { |e| wfa_preprocess(e) }
+    text, exclusion_text = wfa_preprocess(text), wfa_preprocess(exclusion_text)
+
+    exclusions = exclusion_text.split(/\s/)
 
     hash = Hash.new(1)
-    text.split(/\s/).each { |w| hash[wfa_preprocess(w)] += 1 }
+    text.split(/\s/).each { |w| hash[w] += 1 }
     hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
     hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..25]
   end

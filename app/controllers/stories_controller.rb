@@ -3,7 +3,7 @@ class StoriesController < ApplicationController
     _run_search
 
     @stories_count = @stories.count
-    @stories = @stories.limit(100)
+    @stories = @stories.limit(250)
   end
 
   def new

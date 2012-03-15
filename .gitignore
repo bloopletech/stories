@@ -10,3 +10,4 @@
 /pkg/
 /stuff/
 /lib/unimportant.rb
+/public/assets/*

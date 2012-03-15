@@ -94,7 +94,6 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
-    will_paginate (3.0.pre)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -111,4 +110,3 @@ DEPENDENCIES
   rack (= 1.2.1)
   rails (= 3.0.3)
   sqlite3
-  will_paginate (= 3.0.pre)
