@@ -2,13 +2,12 @@ embed_assets: off
 
 javascripts:
   light:
-    - public/javascripts/lib/zepto-0.8.js
-    - public/javascripts/zepto-to-jquery.js
+    - public/javascripts/lib/jquery.min.js
+    - public/javascripts/lib/jquery_ujs.js
 
   heavy:
-    - public/javascripts/lib/jquery-1.7.js
-    - public/javascripts/lib/rails.js
-    - public/javascripts/lib/jrails.js
+    - public/javascripts/lib/jquery.min.js
+    - public/javascripts/lib/jquery_ujs.js
     - public/javascripts/lib/jquery.colorbox.js
 
   index:
