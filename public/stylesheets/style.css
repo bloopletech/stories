@@ -6,9 +6,9 @@ h1, p, ul { margin-bottom: 0.75em; }
 b { font-weight: bold; }
 i { font-style: italic; }
 ul { margin-left: 30px; }
-h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: normal; }
-h2 { font-size: 22px; margin-bottom: 0.6em; text-align: left; font-weight: normal; }
-h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: normal; }
+h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
+h2 { font-size: 22px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
+h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
 
 .clear { clear: both; }
 

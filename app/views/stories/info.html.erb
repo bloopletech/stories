@@ -8,8 +8,8 @@
 <p>You have <%= pluralize(Story.count, 'story') %> and <%= pluralize(ActsAsTaggableOn::Tag.count, 'tag') %>.</p>
 
 <% unless Story.count.zero? %>
-  <p>The oldest story was published on <%= link_to(@oldest_story.published_on, @oldest_story, :method => :get, :remote => true) %>
-  and the newest story was published on <%= link_to(@newest_story.published_on, @newest_story, :method => :get, :remote => true) %>.</p>
+  <p>The oldest story was published on <%= link_to(@oldest_story.published_on, @oldest_story, :target => '_blank') %>
+  and the newest story was published on <%= link_to(@newest_story.published_on, @newest_story, :target => '_blank') %>.</p>
 
   <div class="stats-wrapper">
     <div id="story_lengths" class="chart"></div>
@@ -22,16 +22,16 @@
     %>
     <%= fd_piechart("story_lengths", "Story length (word count)", keys, values) %>
     <div class="stats">
-      <p>The longest story has <%= link_to(pluralize(number_with_delimiter(@longest_story.word_count), 'words'), @longest_story, :method => :get, :remote => true) %> and the
-      shortest has <%= link_to(pluralize(number_with_delimiter(@shortest_story.word_count), 'words'), @shortest_story, :method => :get, :remote => true) %>, with an average
+      <p>The longest story has <%= link_to(pluralize(number_with_delimiter(@longest_story.word_count), 'words'), @longest_story, :target => '_blank') %> and the
+      shortest has <%= link_to(pluralize(number_with_delimiter(@shortest_story.word_count), 'words'), @shortest_story, :target => '_blank') %>, with an average
       of <%= pluralize(number_with_delimiter(Story.average('word_count'), :precision => 1), 'words') %>.</p>
     </div>
     <div class="clear"></div>
   </div>
 
   <p>The most popular story in your collection has been opened
-  <%= link_to(pluralize(@most_popular_story.opens, 'time'), @most_popular_story, :method => :get, :remote => true) %>,
-  and the least popular opened <%= link_to(pluralize(@least_popular_story.opens, 'time'), @least_popular_story, :method => :get, :remote => true) %>,
+  <%= link_to(pluralize(@most_popular_story.opens, 'time'), @most_popular_story, :target => '_blank') %>,
+  and the least popular opened <%= link_to(pluralize(@least_popular_story.opens, 'time'), @least_popular_story, :target => '_blank') %>,
   with an average of <%= pluralize(number_with_precision(Story.average('opens'), :precision => 1), 'open') %> per story.</p>
   
   <p><%= link_to(pluralize(Story.count(:conditions => 'opens > 0'), 'story has', 'stories have'), stories_with(:search => 's:read'), :target => "_blank") %>

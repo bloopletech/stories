@@ -117,8 +117,8 @@ class StoriesController < ApplicationController
       render :text => 'No items yet'
     end
 
-    @oldest_story = Story.order('published_on ASC').first
-    @newest_story = Story.order('published_on DESC').first
+    @oldest_story = Story.order('published_on ASC').where('published_on IS NOT NULL').first
+    @newest_story = Story.order('published_on DESC').where('published_on IS NOT NULL').first
     @longest_story = Story.order('word_count DESC').first
     @shortest_story = Story.order('word_count ASC').first
     @most_popular_story = Story.order('opens DESC').first
