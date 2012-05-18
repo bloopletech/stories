@@ -50,6 +50,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+    @title = @story.title
     Thread.new do
       sleep 1
       @story.open
