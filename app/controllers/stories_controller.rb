@@ -90,11 +90,9 @@ class StoriesController < ApplicationController
       end
 
       flash[:success] = "Export completed successfully."
-      self.formats = [:html, :js]
-      render :action => 'export_done'
-    else
-      render :action => 'export', :layout => 'secondary'
     end
+
+    render :action => 'export'
   end
 
   def export_done
@@ -168,7 +166,7 @@ class StoriesController < ApplicationController
         nil
       else
         included_tags.map do |t|
-          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ?)".gsub("?", c.quote("%#{t}%"))
+          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?)".gsub("?", c.quote("%#{t}%"))
         end.join(" AND ")
       end
       search_ex = if excluded_tags.empty?

@@ -12,14 +12,20 @@
         </div>
       <% end %>
 
-      <div id="nav-wrapper">
-        <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
-        <ul id="nav">
-          <%= yield :nav %>
-        </ul>
-      </div>
+      <div id="content-wrapper">
+        <% if content_for? :nav %>
+          <div id="nav-wrapper">
+            <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
+            <ul id="nav">
+              <%= yield :nav %>
+            </ul>
+          </div>
+        <% end %>
 
-      <%= yield %>
+        <%= yield %>
+
+        <div class="clear"></div>
+      </div>
     </div>
   </body>
 </html>

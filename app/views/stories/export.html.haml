@@ -1,10 +1,15 @@
+- content_for :nav do
+  %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
+
+- @title = "Export Stories"
+%h1= @title
 - url = params.except(:controller, :action).merge(:controller => 'stories', :action => 'export')
 %p Export as:
 %ul
-  %li= link_to(ic("page_white_world", "HTML"), params.merge(:format => 'html'), :method => 'get', :remote => true)
-  %li= link_to(ic("page_white_text", "Text/NSF"), params.merge(:format => 'text'), :method => 'get', :remote => true)
-  %li= link_to(ic("page_white_word", "RTF"), params.merge(:format => 'rtf'), :method => 'get', :remote => true)
-  %li= link_to(ic("page_white_word", "CSV"), params.merge(:format => 'csv'), :method => 'get', :remote => true)
+  %li= link_to(ic("page_white_world", "HTML"), params.merge(:format => 'html'))
+  %li= link_to(ic("page_white_text", "Text/NSF"), params.merge(:format => 'text'))
+  %li= link_to(ic("page_white_word", "RTF"), params.merge(:format => 'rtf'))
+  %li= link_to(ic("page_white_word", "CSV"), params.merge(:format => 'csv'))
 
 - if params[:mode] == 'multiple'
   %p= link_to(ic("compress", "Compress results"), "#")

@@ -39,6 +39,10 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
   position: relative;
 }
 
+#content-wrapper {
+  position: relative;
+}
+
 #nav-wrapper + h1 { margin-right: 127px; }
 
 #nav-wrapper {
@@ -46,8 +50,8 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
  width: 127px;
  background-color: #000000;
  position: absolute;
- right: 1em;
- top: 1em;
+ right: 0;
+ top: 0;
  z-index: 1000;
 }
 
