@@ -38,6 +38,11 @@ module StoriesHelper
     end
   end
 
+  def number_to_pages(num)
+    return 0 if num < 0
+    number_with_delimiter((num / 250.0).ceil)
+  end
+
   def fd_piechart(div, title, keys, values)
     return raw <<-EOF
     <script type="text/javascript">

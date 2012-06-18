@@ -1,16 +1,16 @@
 %li{ :id => dom_id(story) }
   = link_to(story, :target => '_blank') do
     %div
-      %span.title= story_title(story)
-      %span.mfw= wbrize(story.most_frequent_words)
+      %span.title{ :title => "Story title" }= story_title(story)
+      %span.mfw{ :title => "Most frequent words in story" }= wbrize(story.most_frequent_words)
       - unless story.tag_list.empty?
-        %span.tags= story.tag_list
+        %span.tags{ :title => "Story tags" }= story.tag_list
 
-      %span.opens= story.opens
+      %span.opens{ :title => "Story view count" }= story.opens
 
       .emblems
         - many_opens = story.opens >= 10
         - if many_opens
           = image_tag("icons/award_star_bronze_1.png", :title => "Has been read 10 or more times.")
-        %span.wc= number_to_stars(story.word_count)
+        %span.wc{ :title => "Page count of story" }= number_to_pages(story.word_count)
 
