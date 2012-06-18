@@ -4,11 +4,7 @@ javascripts:
   light:
     - public/javascripts/lib/jquery.min.js
     - public/javascripts/lib/jquery_ujs.js
-
-  heavy:
-    - public/javascripts/lib/jquery.min.js
-    - public/javascripts/lib/jquery_ujs.js
-    - public/javascripts/lib/jquery.colorbox.js
+    - public/javascripts/application.js
 
   index:
     - public/javascripts/story-index.js
@@ -28,6 +24,5 @@ stylesheets:
 
   heavy:
     - public/stylesheets/style.css
-    - public/stylesheets/colorbox.css
     - public/stylesheets/formtastic.css
     - public/stylesheets/formtastic_changes.css

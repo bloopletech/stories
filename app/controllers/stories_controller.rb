@@ -73,7 +73,9 @@ class StoriesController < ApplicationController
         @story = Story.find(params[:id])
         exported = [@story.export(params[:format])]
       end
-      
+
+      flash.now[:success] = "#{params[:format].upcase} export completed successfully."
+
       if params[:format] == 'csv'
         require 'csv'
         CSV.open("#{Stories.export_dir}/#{DateTime.now.to_s.gsub(' ', '_')}.csv", "w") do |csv|
@@ -88,8 +90,13 @@ class StoriesController < ApplicationController
           end
         end
       end
+    end
 
-      flash[:success] = "Export completed successfully."
+    @title = if params[:mode] == "multiple"
+      params[:search] ? "Export all stories that contain \"#{params[:search]}\"" : "Export all stories"
+    else
+      story = Story.find(params[:id])
+      "Export #{story.title}"
     end
 
     render :action => 'export'

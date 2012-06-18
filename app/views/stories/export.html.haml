@@ -1,7 +1,6 @@
 - content_for :nav do
   %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
 
-- @title = "Export Stories"
 %h1= @title
 - url = params.except(:controller, :action).merge(:controller => 'stories', :action => 'export')
 %p Export as:
