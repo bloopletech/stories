@@ -63,7 +63,7 @@ GEM
       daemons (~> 1.0.10)
       gem_plugin (~> 0.2.3)
     nokogiri (1.4.4)
-    nsf (0.0.4)
+    nsf (0.0.5)
       clbustos-rtf (>= 0.1.0)
       nokogiri (>= 1.4.4)
       ruby-rtf (>= 0.0.0)
@@ -106,7 +106,7 @@ DEPENDENCIES
   haml (= 3.0.22)
   jammit (= 0.6.3)
   mongrel (= 1.2.0.pre2)
-  nsf
+  nsf (= 0.0.5)
   rack (= 1.2.1)
   rails (= 3.0.3)
   sqlite3

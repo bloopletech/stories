@@ -43,6 +43,33 @@ module StoriesHelper
     number_with_delimiter((num / 250.0).ceil)
   end
 
+  def show_toc?(story)
+    story.nsf.toc.length > 1
+  end
+
+
+  def toc(story)
+    headings = story.nsf.toc
+
+    out = "<ul>"
+    headings.each_with_index do |heading, i|
+      p = i > 0 ? headings[i - 1].level : nil
+      n = (x = headings[i + 1]) && x.level
+
+      out << "<li><a href=\"##{CGI.escapeHTML(heading.ref_html)}\">#{CGI.escapeHTML(heading.text)}</a>"
+      out << if n && heading.level < n
+        "<ul>"
+      elsif n && heading.level == n
+        "</li>"
+      else
+        "</li></ul></li>"
+      end
+    end
+    out << "</ul>"
+
+    out.html_safe
+  end
+
   def fd_piechart(div, title, keys, values)
     return raw <<-EOF
     <script type="text/javascript">
