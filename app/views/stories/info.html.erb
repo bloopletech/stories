@@ -1,11 +1,11 @@
 <% content_for :head do %>
-  <%= include_javascripts :heavy, :graphs %>
+  <%= include_javascripts :graphs %>
 <% end %>
 <%= render :partial => 'nav' %>
 
 <h1>Report on Your Collection of Stories</h1>
 
-<p>You have <%= pluralize(Story.count, 'story') %> and <%= pluralize(ActsAsTaggableOn::Tag.count, 'tag') %>.</p>
+<p>You have <%= pluralize(number_with_delimiter(Story.count), 'story') %> and <%= pluralize(number_with_delimiter(ActsAsTaggableOn::Tag.count), 'tag') %>.</p>
 
 <% unless Story.count.zero? %>
   <p>The oldest story was published on <%= link_to(@oldest_story.published_on, @oldest_story, :target => '_blank') %>
@@ -30,12 +30,12 @@
   </div>
 
   <p>The most popular story in your collection has been opened
-  <%= link_to(pluralize(@most_popular_story.opens, 'time'), @most_popular_story, :target => '_blank') %>,
-  and the least popular opened <%= link_to(pluralize(@least_popular_story.opens, 'time'), @least_popular_story, :target => '_blank') %>,
+  <%= link_to(pluralize(number_with_delimiter(@most_popular_story.opens), 'time'), @most_popular_story, :target => '_blank') %>,
+  and the least popular opened <%= link_to(pluralize(number_with_delimiter(@least_popular_story.opens), 'time'), @least_popular_story, :target => '_blank') %>,
   with an average of <%= pluralize(number_with_precision(Story.average('opens'), :precision => 1), 'open') %> per story.</p>
   
-  <p><%= link_to(pluralize(Story.count(:conditions => 'opens > 0'), 'story has', 'stories have'), stories_with(:search => 's:read'), :target => "_blank") %>
-    been opened at least once, and <%= link_to(pluralize(Story.count(:conditions => 'opens = 0'), 'story has', 'stories have'), stories_with(:search => 's:unread'), :target => '_blank') %>
+  <p><%= link_to(pluralize(number_with_delimiter(Story.count(:conditions => 'opens > 0')), 'story has', 'stories have'), stories_with(:search => 's:read'), :target => "_blank") %>
+    been opened at least once, and <%= link_to(pluralize(number_with_delimiter(Story.count(:conditions => 'opens = 0')), 'story has', 'stories have'), stories_with(:search => 's:unread'), :target => '_blank') %>
   never been opened at all.</p>
 <% end %>
 
