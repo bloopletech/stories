@@ -57,20 +57,12 @@ $(function() {
     location.hash = "#" + index;
   });
 
-  $("body").click(go_next_page);
+  $("body").click(function() {
+    $(window).trigger({ type: 'keydown', 'keyCode': 32 });
+  });
 
   $("#nav-wrapper").click(function(event) {
     event.stopPropagation();
-  });
-
-  $("#previous-page").mousedown(function() {
-    var current = parseInt($("#wrapper").css("margin-top"));
-    if(current < 0) $("#wrapper").css("margin-top", (current + vheight()) + "px");
-  });
-
-  $("#next-page").mousedown(function() {
-    var current = parseInt($("#wrapper").css("margin-top"));
-    if((current - vheight()) > -pheight()) $("#wrapper").css("margin-top", (current - vheight()) + "px");
   });
 
   /*setTimeout(function() {
