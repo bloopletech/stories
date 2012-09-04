@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  layout :pick_layout
+
   def index
     _run_search
 
@@ -191,5 +193,10 @@ class StoriesController < ApplicationController
     else
       Story
     end.order("#{params[:sort]} #{params[:sort_direction]}")
+  end
+
+  private
+  def pick_layout
+    [:new, :create, :edit, :update, :destroy, :export, :info].include?(action_name.to_sym) ? "manipulate" : "application"
   end
 end

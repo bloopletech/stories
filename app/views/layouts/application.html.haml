@@ -1,0 +1,14 @@
+!!! 5
+%html.main{ :xmlns => "", :id => "#{@page_id || "#{controller.controller_name}-#{controller.action_name}"}" }
+  %head
+    = render :partial => 'layouts/header'
+    = include_stylesheets :application, :media => "all"
+    = include_javascripts :application
+  %body
+    #wrapper
+      #content-wrapper
+        #content-window
+          #content
+            = render :partial => 'layouts/nav_success'
+            = yield
+            .clear

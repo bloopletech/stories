@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <title>#{@title ? "#{@title}: " : ""}Story Reader</title>
-= include_stylesheets :light, :media => 'all'
+= include_stylesheets :common, :media => 'all'
 = csrf_meta_tag
-= include_javascripts :light
+= include_javascripts :common
 <meta name="HandheldFriendly" content="true" />
 <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, minimum-scale=1 maximum-scale=1" />
 = yield :head

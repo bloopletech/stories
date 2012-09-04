@@ -1,15 +1,17 @@
 embed_assets: off
 
 javascripts:
-  light:
+  common:
     - public/javascripts/lib/jquery.min.js
     - public/javascripts/lib/jquery_ujs.js
+
+  application:
     - public/javascripts/application.js
 
   index:
     - public/javascripts/story-index.js
 
-  edit:
+  manipulate:
     - public/javascripts/story-edit.js
 
   graphs:
@@ -19,8 +21,14 @@ javascripts:
     - public/javascripts/story-reports.js
 
 stylesheets:
-  light:
+  common:
     - public/stylesheets/style.css
+
+  application:
+    - public/stylesheets/application.css
+
+  manipulate:
+    - public/stylesheets/manipulate.css
 
   heavy:
     - public/stylesheets/style.css
