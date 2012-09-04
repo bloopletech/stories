@@ -1,7 +1,10 @@
 #wrapper {
-  padding: 20px;
   display: block;
   position: relative;
+}
+
+#content-wrapper {
+  padding: 20px;
 }
 
 #nav-wrapper {

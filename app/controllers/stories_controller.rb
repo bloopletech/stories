@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  layout :pick_page_style
+  before_filter :pick_page_style
 
   def index
     _run_search

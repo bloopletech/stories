@@ -19,9 +19,8 @@ $(function() {
     column_gap_width = (padding * 2) + 1;
     column_width = (wrapper_width / 2.0) - column_gap_width;
     $("#wrapper").show();
-    $("#wrapper, #content-wrapper, #content-window, #content").css("height", wrapper_height + "px");
-    $("#wrapper, #content-wrapper, #content-window").css("width", wrapper_width + "px");
-    $("#wrapper").css("padding", padding + "px");
+    $("#content-wrapper, #content-window, #content").css({ "width": wrapper_width + "px", "height": wrapper_height + "px" });
+    $("#content-wrapper").css("padding", padding + "px");
     $("#content").css({ "-webkit-column-width": column_width + "px", "-moz-column-width": column_width + "px", "column-width": column_width + "px",
      "-webkit-column-gap": column_gap_width + "px", "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
     $("#nav-wrapper").css("left", (column_width - 107) + "px");
