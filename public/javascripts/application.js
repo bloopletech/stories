@@ -37,7 +37,7 @@ $(function() {
   }
 
   $(window).bind('hashchange', function() {
-    $("#content-window").css("margin-left", -(viewport_width * get_index()) + "px");
+    $("#content-window").animate({ "margin-left": -(viewport_width * get_index()) + "px" }, 500, "swing");
   }).trigger('hashchange');
 
   $(window).keydown(function(event) {
