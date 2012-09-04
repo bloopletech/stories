@@ -44,10 +44,10 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 
 #content {
- height: 100%;
  -webkit-column-rule-color: #a0a0a0;
  -webkit-column-rule-style: solid;
  -webkit-column-rule-width: 1px;
+ position: relative;
 }
 
 #nav-wrapper + h1 { margin-right: 127px; }

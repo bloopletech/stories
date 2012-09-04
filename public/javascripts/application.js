@@ -24,6 +24,7 @@ $(function() {
     $("#wrapper").css("padding", padding + "px");
     $("#content").css({ "-webkit-column-width": column_width + "px", "-moz-column-width": column_width + "px", "column-width": column_width + "px",
      "-webkit-column-gap": column_gap_width + "px", "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
+    $("#nav-wrapper").css("left", (column_width - 107) + "px");
   }).resize();
 
   function get_index()
