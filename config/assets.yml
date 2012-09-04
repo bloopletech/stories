@@ -24,9 +24,6 @@ stylesheets:
   common:
     - public/stylesheets/style.css
 
-  application:
-    - public/stylesheets/application.css
-
   manipulate:
     - public/stylesheets/manipulate.css
 

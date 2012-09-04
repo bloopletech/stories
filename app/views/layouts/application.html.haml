@@ -3,12 +3,26 @@
   %head
     = render :partial => 'layouts/header'
     = include_stylesheets :application, :media => "all"
-    = include_javascripts :application
+    - if @page_style == "manipulate"
+      = include_stylesheets :manipulate
+    - else
+      = include_javascripts :application
   %body
     #wrapper
       #content-wrapper
         #content-window
           #content
-            = render :partial => 'layouts/nav_success'
+            - if flash[:success]
+              #success
+                %a{:href => "/stories"}
+                  %img{:src => "/images/icons/accept.png"}
+                  = flash[:success]
+
+            - if content_for? :nav
+              #nav-wrapper
+                %span.menu-item
+                  %a#nav-show{:href => "#"} Actions
+                %ul#nav= yield :nav
+
             = yield
             .clear

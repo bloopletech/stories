@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  layout :pick_layout
+  layout :pick_page_style
 
   def index
     _run_search
@@ -196,7 +196,7 @@ class StoriesController < ApplicationController
   end
 
   private
-  def pick_layout
-    [:new, :create, :edit, :update, :destroy, :export, :info].include?(action_name.to_sym) ? "manipulate" : "application"
+  def pick_page_style
+    @page_style = ([:new, :create, :edit, :update, :destroy, :export, :info].include?(action_name.to_sym) ? "manipulate" : "application")
   end
 end
