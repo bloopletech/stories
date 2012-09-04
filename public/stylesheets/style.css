@@ -33,6 +33,7 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 
 #wrapper {
+  display: none;
 }
 
 #content-wrapper {

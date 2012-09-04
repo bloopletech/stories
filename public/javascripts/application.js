@@ -1,4 +1,8 @@
 $(function() {
+  if(!$.browser.webkit) {
+    alert("Page flipping may not work in your browser; you can try a WebKit-based browser (Google Chrome, Chromium, Safari, etc.) instead.");
+  }
+
   var padding = 20;
   var viewport_width = 0;
   var viewport_height = 0;
@@ -14,10 +18,12 @@ $(function() {
     wrapper_height = viewport_height - (padding * 2);
     column_gap_width = (padding * 2) + 1;
     column_width = (wrapper_width / 2.0) - column_gap_width;
+    $("#wrapper").show();
     $("#wrapper, #content-wrapper, #content-window, #content").css("height", wrapper_height + "px");
     $("#wrapper, #content-wrapper, #content-window").css("width", wrapper_width + "px");
     $("#wrapper").css("padding", padding + "px");
-    $("#content").css("-webkit-column-width", column_width + "px").css("-webkit-column-gap", column_gap_width + "px");
+    $("#content").css({ "-webkit-column-width": column_width + "px", "-moz-column-width": column_width + "px", "column-width": column_width + "px",
+     "-webkit-column-gap": column_gap_width + "px", "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
   }).resize();
 
   function get_index()
