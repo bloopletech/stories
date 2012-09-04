@@ -2,9 +2,8 @@
 %html.main{ :xmlns => "", :id => "#{@page_id || "#{controller.controller_name}-#{controller.action_name}"}" }
   %head
     = render :partial => 'layouts/header'
-    = include_stylesheets :application, :media => "all"
     - if @page_style == "manipulate"
-      = include_stylesheets :manipulate
+      = include_stylesheets :manipulate, :media => "all"
     - else
       = include_javascripts :application
   %body
