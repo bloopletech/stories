@@ -4,10 +4,9 @@
 }
 
 #content-wrapper {
-  padding: 20px;
+  overflow: visible;
 }
 
-#nav-wrapper {
-  right: 20px;
-  top: 20px;
+#content-clip {
+  padding: 20px;
 }
