@@ -5,26 +5,31 @@
   </head>
   <body>    
     <div id="wrapper">
-      <% if flash[:success] %>
-        <div id="success">
-          <a href="/stories"><img src="/images/icons/accept.png"></a>
-          <%= flash[:success] %>
-        </div>
-      <% end %>
-
       <div id="content-wrapper">
-        <% if content_for? :nav %>
-          <div id="nav-wrapper">
-            <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
-            <ul id="nav">
-              <%= yield :nav %>
-            </ul>
+        <div id="content-window">
+          <div id="content">
+            
+          <% if flash[:success] %>
+            <div id="success">
+              <a href="/stories"><img src="/images/icons/accept.png"></a>
+              <%= flash[:success] %>
+            </div>
+          <% end %>
+
+            <% if content_for? :nav %>
+              <div id="nav-wrapper">
+                <span class="menu-item"><a href="#" id="nav-show">Actions</a></span>
+                <ul id="nav">
+                  <%= yield :nav %>
+                </ul>
+              </div>
+            <% end %>
+
+            <%= yield %>
+
+            <div class="clear"></div>
           </div>
-        <% end %>
-
-        <%= yield %>
-
-        <div class="clear"></div>
+        </div>
       </div>
     </div>
   </body>

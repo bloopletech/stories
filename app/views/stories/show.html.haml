@@ -1,6 +1,6 @@
 = render :partial => 'single_nav'
-- if show_toc?(@story)
-  #toc
-    %h3 Table of Contents
-    = toc @story
+- #- if show_toc?(@story)
+- #  #toc
+- #    %h3 Table of Contents
+- #    = toc @story
 = raw @story.nsf.to_html
