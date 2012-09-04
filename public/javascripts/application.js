@@ -26,47 +26,42 @@ $(function() {
     $("#nav-wrapper").css("left", (column_width - 107) + "px");
   }).resize();
 
-  function get_index()
-  {
+  function get_index() {
     var index = parseInt(location.hash.substr(1)); 
     if(isNaN(index)) index = 0;
     return index;
   }
 
-  function get_max_index()
-  {
-    x = Math.ceil($("#content")[0].scrollWidth / (viewport_width + 0.0)); 
-    return x;
+  function get_max_index() {
+    return Math.ceil($("#content")[0].scrollWidth / (viewport_width + 0.0)); 
   }
 
-  function go_next_page()
-  {
-    var index = get_index();
-    index += 1;
-    if(index >= get_max_index()) index = get_max_index() - 1;
-    location.hash = "#" + index;
-  }
-
-  $(window).bind('hashchange', function()
-  {
+  $(window).bind('hashchange', function() {
     $("#content-window").css("margin-left", -(viewport_width * get_index()) + "px");
   }).trigger('hashchange');
 
-  $(window).keydown(function(event)
-  {
-    if(event.keyCode == 32)
-    {
+  $(window).keydown(function(event) {
+    var index = get_index();
+
+    if(event.keyCode == 32) {
       event.preventDefault();
-      go_next_page();      
+      index++;
+      if(index >= get_max_index()) index = get_max_index() - 1;
     }
-    else if(event.keyCode == 8)
-    {
+    else if(event.keyCode == 8) {
       event.preventDefault();
-      history.back();
+      index--;
+      if(index < 0) index = 0;
     }
+
+    location.hash = "#" + index;
   });
 
-  $("body").click(go_next_page); 
+  $("body").click(go_next_page);
+
+  $("#nav-wrapper").click(function(event) {
+    event.stopPropagation();
+  });
 
   $("#previous-page").mousedown(function() {
     var current = parseInt($("#wrapper").css("margin-top"));
