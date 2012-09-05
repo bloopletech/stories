@@ -57,11 +57,9 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 #nav-wrapper + h1 { margin-right: 127px; }
 
 #nav-wrapper {
- float: right;
  width: 127px;
  background-color: #000000;
  position: absolute;
- right: 0;
  top: 0;
  z-index: 1000;
 }
