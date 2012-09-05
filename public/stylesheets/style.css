@@ -48,9 +48,9 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 
 #content {
- -webkit-column-rule-color: silver;
- -webkit-column-rule-style: solid;
- -webkit-column-rule-width: 1px;
+ -webkit-column-rule: 1px solid silver;
+ -moz-column-rule: 1px solid silver;
+ column-rule: 1px solid silver;
  position: relative;
 }
 

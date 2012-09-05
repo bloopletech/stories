@@ -11,6 +11,6 @@ $(function() {
     event.stopPropagation();
   }).keydown(function(event)
   {
-    if(event.keyCode == 32 || event.keyCode == 8) event.stopPropagation();
+    if(event.keyCode == 32 || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39) event.stopPropagation();
   });
 });
