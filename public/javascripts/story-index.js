@@ -7,9 +7,7 @@ window.onload = function() {
 };
 
 $(function() {
-  $("#search_form").click(function(event) {
-    event.stopPropagation();
-  }).keydown(function(event)
+  $("#search_form").keydown(function(event)
   {
     if(event.keyCode == 32 || event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39) event.stopPropagation();
   });

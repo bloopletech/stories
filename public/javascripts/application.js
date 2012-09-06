@@ -18,9 +18,9 @@ $(function() {
     $("#content").css({ "-webkit-column-width": column_width + "px", "-moz-column-width": column_width + "px", "column-width": column_width + "px",
      "-webkit-column-gap": column_gap_width + "px", "-moz-column-gap": column_gap_width + "px", "column-gap": column_gap_width + "px" });
 
-    $("#content").css("overflow", "auto");
+    //$("#content").css("overflow", "auto");
     content_width = $("#content")[0].scrollWidth;
-    $("#content").css("overflow", "visible");
+    //$("#content").css("overflow", "visible");
 
     $("#nav-wrapper").css("left", (column_width - 107) + "px");
   }).resize();
@@ -54,14 +54,6 @@ $(function() {
     }
 
     location.hash = "#" + index;
-  });
-
-  $("body").click(function() {
-    $(window).trigger({ type: 'keydown', 'keyCode': 32 });
-  });
-
-  $("#nav-wrapper").click(function(event) {
-    event.stopPropagation();
   });
 
   /*setTimeout(function() {
