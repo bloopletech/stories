@@ -58,16 +58,16 @@ class Story < ActiveRecord::Base
   #Do not call more than once at a time
   def self.import
     import_directory(Stories.import_dir)
-    system("cd #{File.escape_name(Stories.import_dir)} && find . -depth -type d -empty -exec rmdir {} \\;")
+    system("cd #{File.quote_name(Stories.import_dir)} && find . -depth -type d -empty -exec rmdir {} \\;")
   end
   
   def self.import_directory(dir)
     require 'fileutils'
-    FileUtils.rm_rf(Dir.glob("#{File.escape_name(dir)}/**/*_files"))
+    FileUtils.rm_rf(Dir.glob("#{File.escape_glob_name(dir)}/**/*_files"))
     
     #Requires GNU find 3.8 or above
     cmd = <<-CMD
-cd #{File.escape_name(dir)} && find . \\( -type f \\( #{VALID_EXTS.map { |ext| "-iname '*#{ext}'" }.join(' -o ')} \\) \\)
+cd #{File.quote_name(dir)} && find . \\( -type f \\( #{VALID_EXTS.map { |ext| "-iname '*#{ext}'" }.join(' -o ')} \\) \\)
 CMD
 
     $stdout.puts #This makes it actually import; fuck knows why
@@ -96,7 +96,7 @@ CMD
     end
     
     if book[:content].present?
-      title = book[:title].gsub(/_/, ' ')
+      title = book[:title].gsub(/_/, ' ').gsub(/\A[ [:cntrl:]]+/, '').gsub(/[ [:cntrl:]]+\Z/, '')
       Story.create!(:title => title, :content => book[:content], :published_on => last_modified)
     end
 
@@ -108,7 +108,7 @@ CMD
     Dir.mkdir(temp_dir)
 
     if File.extname(real_path).downcase == '.zip'
-      system("unzip #{File.escape_name(real_path)} -d #{File.escape_name(temp_dir)}")
+      system("unzip #{File.quote_name(real_path)} -d #{File.quote_name(temp_dir)}")
       import_directory(temp_dir)
       FileUtils.rm(real_path) if File.exists?(real_path)
     end
@@ -126,6 +126,14 @@ CMD
     doc = Nsf::Document.from(text, is_html ? "html" : "text")
     
     { :title => (doc.title || File.basename(real_path) || "Unknown title"), :content => doc.to_nsf }
+  end
+
+  def export_file(format)
+    ff = export(format)
+    File.open("#{Stories.export_dir}/#{ff.filename}", "w") do |f|
+      f << ff.content
+      f.flush
+    end
   end
 
   def export(format)
