@@ -4,6 +4,7 @@ javascripts:
   common:
     - public/javascripts/lib/jquery.min.js
     - public/javascripts/lib/jquery_ujs.js
+    - public/javascripts/lib/jquery.twoup.js
 
   application:
     - public/javascripts/application.js

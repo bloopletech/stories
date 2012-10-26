@@ -8,21 +8,17 @@
       = include_javascripts :application
   %body
     #wrapper
-      #content-wrapper
-        #content-clip
-          #content-window
-            #content
-              - if flash[:success]
-                #success
-                  %a{:href => "/stories"}
-                    %img{:src => "/images/icons/accept.png"}
-                    = flash[:success]
+      - if flash[:success]
+        #success
+          %a{:href => "/stories"}
+            %img{:src => "/images/icons/accept.png"}
+            = flash[:success]
 
-              - if content_for? :nav
-                #nav-wrapper
-                  %span.menu-item
-                    %a#nav-show{:href => "#"} Actions
-                  %ul#nav= yield :nav
+      - if content_for? :nav
+        #nav-wrapper
+          %span.menu-item
+            %a#nav-show{:href => "#"} Actions
+          %ul#nav= yield :nav
 
-              = yield
-              .clear
+      = yield
+      .clear
