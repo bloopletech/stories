@@ -103,6 +103,7 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 #stories li span.title::before { content: url("/images/icons/page_white_text.png");  }
 #stories li span.title.many_opens::before { content: url("/images/icons/award_star_bronze_1.png"); }/* :title => "Has been read 10 or more times.")}*/
 #stories li span.title.scrap:before { content: url("/images/icons/page_white_text_scrap.png"); }/* :title => "Has been read 10 or more times.")}*/
+#stories li span.title.unopened:before { content: url("/images/icons/page_white_lightning.png"); }/* :title => "Has been read 10 or more times.")}*/
 
 #stories li span.mfw::before { content: url("/images/icons/comments.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 #stories li span.tags::before { content: url("/images/icons/tag_blue.png"); vertical-align: middle; padding: 0 3px 0 10px; }

@@ -23,6 +23,8 @@ module StoriesHelper
     classes = ["title"]
     classes << if story.opens >= 10
       "many_opens"
+    elsif story.opens < 3
+      "unopened"
     elsif story.page_count <= 20
       "scrap"
     end
