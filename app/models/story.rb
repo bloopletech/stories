@@ -27,8 +27,14 @@ class Story < ActiveRecord::Base
     exclusions = exclusion_text.split(/\s/)
 
     hash = Hash.new(1)
-    text.split(/\s/).each { |w| hash[w] += 1 }
-    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) || k.blank? }
+    text.split(/(?:\s|\u2026|\.\.\.)/).map do |word|
+      word.strip.gsub(/^\W/, "").gsub(/\W$/, "").gsub(/'s$/, "")
+    end.reject do |word|
+      word.blank?
+    end.each do |w|
+      hash[w] += 1
+    end
+    hash.reject! { |k, v| STOPWORDS.include?(k.downcase) || exclusions.include?(k.downcase) }
     hash.to_a.sort_by { |(k, v)| v }.reverse.map { |(k, v)| k }[0..25]
   end
 
