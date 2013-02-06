@@ -19,6 +19,16 @@ module StoriesHelper
     wbrize(story.title.gsub(/\s+/, ' '))
   end
 
+  def story_title_classes(story)
+    classes = ["title"]
+    classes << if story.opens >= 10
+      "many_opens"
+    elsif story.page_count <= 20
+      "scrap"
+    end
+    classes.join(" ")
+  end
+
   def ic(icon, text)
     "#{raw image_tag("icons/#{icon}.png")} <span>#{text}</span>".html_safe
   end
@@ -38,15 +48,9 @@ module StoriesHelper
     end
   end
 
-  def number_to_pages(num)
-    return 0 if num < 0
-    number_with_delimiter((num / 250.0).ceil)
-  end
-
   def show_toc?(story)
     story.nsf.toc.length > 1
   end
-
 
   def toc(story)
     headings = story.nsf.toc

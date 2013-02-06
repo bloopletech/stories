@@ -98,7 +98,12 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 #stories li > a > div img:first-child { padding-left: 0; }
 #stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; background-color: #fff; padding: 0 0 0 5px; }
 
-#stories li span.title::before { content: url("/images/icons/page_white_text.png"); vertical-align: middle; padding: 0 3px 0 0; }
+
+#stories li span.title::before { vertical-align: middle; padding: 0 3px 0 0; }
+#stories li span.title::before { content: url("/images/icons/page_white_text.png");  }
+#stories li span.title.many_opens::before { content: url("/images/icons/award_star_bronze_1.png"); }/* :title => "Has been read 10 or more times.")}*/
+#stories li span.title.scrap:before { content: url("/images/icons/page_white_text_scrap.png"); }/* :title => "Has been read 10 or more times.")}*/
+
 #stories li span.mfw::before { content: url("/images/icons/comments.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 #stories li span.tags::before { content: url("/images/icons/tag_blue.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 #stories li span.opens::before { content: url("/images/icons/application_go.png"); vertical-align: middle; padding: 0 3px 0 10px; }

@@ -14,6 +14,11 @@ class Story < ActiveRecord::Base
     update_attribute(:last_opened_at, DateTime.now)
   end
 
+  def page_count
+    wpp = (x = ENV["STORIES_WORDS_PER_PAGE"]) ? x.to_f : 250.0
+    (word_count / wpp).ceil
+  end
+
   STOPWORDS = File.read("#{Rails.root}/config/stopwords.txt").split("\n")
 
   def self.wfa(text, exclusion_text)
