@@ -145,7 +145,8 @@ class StoriesController < ApplicationController
     @longest_story = Story.order('word_count DESC').first
     @shortest_story = Story.order('word_count ASC').first
     @most_popular_story = Story.order('opens DESC').first
-    @least_popular_story = Story.order('opens ASC').first    
+    @least_popular_story = Story.order('opens ASC').first
+    @disk_usage = File.size(Stories::Application::DATABASE_PATH)
   end
 
 

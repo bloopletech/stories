@@ -36,7 +36,9 @@
   
   <p><%= link_to(pluralize(number_with_delimiter(Story.count(:conditions => 'opens > 0')), 'story has', 'stories have'), stories_with(:search => 's:read'), :target => "_blank") %>
     been opened at least once, and <%= link_to(pluralize(number_with_delimiter(Story.count(:conditions => 'opens = 0')), 'story has', 'stories have'), stories_with(:search => 's:unread'), :target => '_blank') %>
-  never been opened at all.</p>
+    never been opened at all.</p>
+
+  <p>Your collection uses <%= number_to_human_size(@disk_usage) %> of disk space.</p>
 <% end %>
 
 <!-- add most and least popular tags -->
