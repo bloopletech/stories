@@ -11,6 +11,7 @@ Stories::Application.routes.draw do |map|
       get :quit
       get :export
       get :export_done
+      get :qpe
     end
   end
 

@@ -108,6 +108,21 @@ class StoriesController < ApplicationController
     render :action => 'export_done', :layout => 'secondary'
   end
 
+  QPE_LENGTH = 150
+  def qpe
+    stories = (Story.order("opens DESC").limit(QPE_LENGTH) | Story.order("last_opened_at DESC").limit(QPE_LENGTH) | Story.order("word_count DESC").limit(QPE_LENGTH))
+    stories.each do |s|
+      e = s.export("html")
+      File.open("#{Stories.export_dir}/#{e.filename}", "w") do |f|
+        f << e.content
+        f.flush
+      end
+    end
+    flash[:success] = "Stories exported successfully."
+    redirect_to "/"
+  end
+
+
   
 
   
