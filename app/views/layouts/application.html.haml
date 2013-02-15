@@ -1,11 +1,8 @@
 !!! 5
-%html.main{ :xmlns => "", :id => "#{@page_id || "#{controller.controller_name}-#{controller.action_name}"}" }
+%html.main{ :xmlns => "", :id => "#{@page_id || "#{controller.controller_name}-#{controller.action_name}"}", "class" => @page_style }
   %head
     = render :partial => 'layouts/header'
-    - if @page_style == "manipulate"
-      = include_stylesheets :manipulate, :media => "all"
-    - else
-      = include_javascripts :application
+    = include_javascripts :application
   %body
     #wrapper
       - if flash[:success]

@@ -47,6 +47,11 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
  z-index: 1000;
 }
 
+html.manipulate #nav-wrapper {
+  right: 20px;
+  top: 20px;
+}
+
 #nav-wrapper:hover > #nav { display: block; }
 
 #nav {

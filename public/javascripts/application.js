@@ -1,9 +1,11 @@
 $(function() {
-  $("#wrapper").twoup("1px solid silver");
-  $(window).resize(function() {
-    $.twoup.content.css("position", "relative");
-    $("#nav-wrapper").css("left", ($.twoup.column_width() - $("#nav-wrapper").width()) + "px");
-  }).resize();
+  if(!$("html").hasClass("manipulate")) {
+    $("#wrapper").twoup("1px solid silver");
+    $(window).resize(function() {
+      $.twoup.content.css("position", "relative");
+      $("#nav-wrapper").css("left", ($.twoup.column_width() - $("#nav-wrapper").width()) + "px");
+    }).resize();
+  }
 
   /*setTimeout(function() {
     scrollTo(200, 0);
