@@ -1,9 +1,8 @@
 $(function() {
   $("#wrapper").twoup("1px solid silver");
   $(window).resize(function() {
-    var content = $("#wrapper > div > div").css("position", "relative");
-    var column_width = parseInt(content.css("-webkit-column-width") || content.css("column-width"));
-    $("#nav-wrapper").css("left", (column_width - $("#nav-wrapper").width()) + "px");
+    $.twoup.content.css("position", "relative");
+    $("#nav-wrapper").css("left", ($.twoup.column_width() - $("#nav-wrapper").width()) + "px");
   }).resize();
 
   /*setTimeout(function() {
