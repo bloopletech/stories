@@ -68,7 +68,13 @@
     //at the moment, only WebKit and MSIE10 has proper support for css3 columns AND getting the right width for a column element with overflow
     if(!$.browser.webkit && (!$.browser.msie || $.browser.version < 10)) return;
 
+    var firstrun = true;
     $(window).resize(function() {
+      if(twoup.displaying_columns() && firstrun) {
+        enabled = true;
+        firstrun = false;
+      }
+
       if(twoup.displaying_columns()) recalc_enabled_columns();
       else recalc_disabled_columns();
     }).resize();
