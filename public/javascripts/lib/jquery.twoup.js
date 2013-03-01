@@ -15,7 +15,7 @@
     var inner_width = window.innerWidth - column_gap_width;
     var inner_height = window.innerHeight - column_gap_width;
     var column_width = Math.floor((inner_width - column_gap_width) / 2);
-    scroll_width = (column_width + column_gap_width) * 2;
+    scroll_width = (column_width + column_gap_width);
 
     padding.css({ "width": inner_width + "px", "height": inner_height + "px", "overflow": "hidden" });
     content.css({ "width": inner_width + "px", "height": inner_height + "px", "-webkit-column-width": column_width + "px",
@@ -46,7 +46,7 @@
   }
 
   function get_max_index() {
-    return Math.ceil(content_width / (scroll_width + 0.0));
+    return Math.ceil(content_width / scroll_width);
   }
 
   //Cargo-culting from colorbox
@@ -80,7 +80,7 @@
     }).resize();
 
     $(window).bind('hashchange', function() {
-      slider.animate({ "margin-left": -(scroll_width * get_index()) + "px" }, 500, "swing");
+      slider.animate({ "margin-left": -(scroll_width * Math.floor(get_index() / 2) * 2) + "px" }, 500, "swing");
     }).trigger('hashchange');
 
     $(window).keydown(function(event) {
@@ -88,12 +88,12 @@
 
       if(event.keyCode == 32 || event.keyCode == 39) {
         event.preventDefault();
-        index++;
+        index += 2;
         if(index >= get_max_index()) index = get_max_index() - 1;
       }
       else if(event.keyCode == 8 || event.keyCode == 37) {
         event.preventDefault();
-        index--;
+        index -= 2;
         if(index < 0) index = 0;
       }
 
