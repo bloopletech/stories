@@ -1,5 +1,5 @@
 /* Shared */
-* { margin: 0; padding: 0; font: 16px/1.45em 'HelveticaNeueLT Com 45 Lt', 'Helvetica Neue Light', 'Helvetice Neue', Helvetica, Arial, sans-serif; }
+* { margin: 0; padding: 0; font: 18px/1.4em 'Open Sans', Helvetica, Arial, sans-serif; }
 html, body { height: 100%; }
 body { color: #000000; background-color: #ffffff; }
 img { border: none; vertical-align: middle; }
@@ -7,9 +7,9 @@ h1, p, ul { margin-bottom: 1em; }
 b { font-weight: bold; }
 i { font-style: italic; }
 ul { margin-left: 30px; }
-h1 { font-size: 28px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
-h2 { font-size: 22px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
-h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
+h1 { font-size: 40px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
+h2 { font-size: 30px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
+h3 { font-size: 24px; margin-bottom: 0.6em; text-align: left; font-weight: bold; }
 
 .clear { clear: both; }
 
@@ -34,7 +34,7 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 
 #wrapper {
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
 }
 
 #nav-wrapper + h1 { margin-right: 127px; }
@@ -48,8 +48,8 @@ h3 { font-size: 18px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 
 html.manipulate #nav-wrapper {
-  right: 20px;
-  top: 20px;
+  right: 30px;
+  top: 30px;
 }
 
 #nav-wrapper:hover > #nav { display: block; }
@@ -93,10 +93,10 @@ html.manipulate #nav-wrapper {
 /* List page only */
 
 #stories { list-style-type: none; margin: 0; }
-#stories li { border-bottom: 1px solid #c0c0c0; margin: 0; display: block; }
+#stories li { border-bottom: 1px solid #777777; margin: 0; display: block; }
 #stories li:last-child { border-bottom: none; }
 
-#stories li > a, #stories li > div > div, #stories li > span { white-space: nowrap; overflow: hidden; color: #000000; text-decoration: none; vertical-align: middle; display: block; padding: 5px 0 5px 0; position: relative; }
+#stories li > a, #stories li > div > div, #stories li > span { white-space: nowrap; overflow: hidden; color: #000000; text-decoration: none; vertical-align: middle; display: block; padding: 7px 0 7px 0; position: relative; }
 #stories li > a > div { display: block; position: relative; }
 #stories li > a span { vertical-align: middle; }
 #stories li > a > div img { padding: 0 0 0 10px; }
