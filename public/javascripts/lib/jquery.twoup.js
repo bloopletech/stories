@@ -80,7 +80,7 @@
     }).resize();
 
     $(window).bind('hashchange', function() {
-      slider.animate({ "margin-left": -(scroll_width * Math.floor(get_index() / 2) * 2) + "px" }, 500, "swing");
+      slider.stop(true, true).animate({ "margin-left": -(scroll_width * Math.floor(get_index() / 2) * 2) + "px" }, 500, "swing");
     }).trigger('hashchange');
 
     $(window).keydown(function(event) {
