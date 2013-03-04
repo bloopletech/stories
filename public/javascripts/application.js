@@ -1,6 +1,6 @@
 $(function() {
   if(!$("html").hasClass("manipulate")) {
-    $("#wrapper").twoup("1px solid #000000");
+    $("#wrapper").twoup("none");
     $(window).resize(function() {
       $.twoup.content.css("position", "relative");
       $("#nav-wrapper").css("left", ($.twoup.column_width() - $("#nav-wrapper").width()) + "px");

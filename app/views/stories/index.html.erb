@@ -17,9 +17,9 @@
 <ul id="stories">
   <%= render :partial => 'story', :collection => @stories %>
   <% if @stories.empty? %>
-    <li><span class="results">No results found.</span></li>
+    <li><div class="results">No results found.</div></li>
   <% elsif @stories_count > 100 %>
-    <li><span class="results">There are more stories, restrict your search to see them.</span></li>
+    <li><div class="results">There are more stories, restrict your search to see them.</div></li>
   <% end %>
 </ul>
 <div class="clear"></div>

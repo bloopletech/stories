@@ -1,13 +1,12 @@
 %li{ :id => dom_id(story) }
   = link_to(story, :target => '_blank') do
-    %div
-      %span{ :title => "Story title", :class => story_title_classes(story) }= story_title(story)
-      %span.mfw{ :title => "Most frequent words in story" }= wbrize(story.most_frequent_words)
-      - unless story.tag_list.empty?
-        %span.tags{ :title => "Story tags" }= story.tag_list
+    %span{ :title => "Story title", :class => story_title_classes(story) }= story_title(story)
+    %span.mfw{ :title => "Most frequent words in story" }= wbrize(story.most_frequent_words)
+    - unless story.tag_list.empty?
+      %span.tags{ :title => "Story tags" }= story.tag_list
 
-      %span.opens{ :title => "Story view count" }= story.opens
+    %span.opens{ :title => "Story view count" }= story.opens
 
-      .emblems
-        %span.wc{ :title => "Page count of story" }= number_with_delimiter(story.page_count)
+    .emblems
+      %span.wc{ :title => "Page count of story" }= number_with_delimiter(story.page_count)
 

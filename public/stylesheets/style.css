@@ -13,7 +13,7 @@ h3 { font-size: 24px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 
 .clear { clear: both; }
 
-#header { margin: 0 0 15px 0; }
+#header { margin: 0 0 12px 0; }
 #search { width: 300px; }
 #actions { float: right; }
 
@@ -37,10 +37,10 @@ h3 { font-size: 24px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
   padding: 40px;
 }
 
-#nav-wrapper + h1 { margin-right: 127px; }
+#nav-wrapper + h1 { margin-right: 142px; }
 
 #nav-wrapper {
- width: 127px;
+ width: 142px;
  background-color: #000000;
  position: absolute;
  top: 0;
@@ -48,8 +48,8 @@ h3 { font-size: 24px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 
 html.manipulate #nav-wrapper {
-  right: 30px;
-  top: 30px;
+  right: 40px;
+  top: 40px;
 }
 
 #nav-wrapper:hover > #nav { display: block; }
@@ -57,12 +57,13 @@ html.manipulate #nav-wrapper {
 #nav {
  border: 1px solid #000000;
  background-color: #ffffff;
- width: 125px;
+ width: 140px;
  list-style-type: none;
  margin: 0;
  display: none;
 }
 .menu-item {
+  padding: 0 1px;
 }
 #nav li, .menu-item {
  display: block;
@@ -72,7 +73,7 @@ html.manipulate #nav-wrapper {
 }
 #nav li a, .menu-item a {
  display: block;
- padding: 5px 12px;
+ padding: 3px 9px;
  text-decoration: none;
  color: #000000;
  white-space: nowrap;
@@ -86,25 +87,21 @@ html.manipulate #nav-wrapper {
 #nav li:hover a, .menu-item:hover a {
  color: #ffffff;
 }
-#nav li a, #nav li a span, .menu-item a, .menu-item a span {
+#nav li a span, .menu-item a span {
  vertical-align: middle;
 }
 
 /* List page only */
 
 #stories { list-style-type: none; margin: 0; }
-#stories li { border-bottom: 1px solid #777777; margin: 0; display: block; }
-#stories li:last-child { border-bottom: none; }
+#stories li { display: block; margin: 10px 0; padding: 1px; }
 
-#stories li > a, #stories li > div > div, #stories li > span { white-space: nowrap; overflow: hidden; color: #000000; text-decoration: none; vertical-align: middle; display: block; padding: 7px 0 7px 0; position: relative; }
-#stories li > a > div { display: block; position: relative; }
-#stories li > a span { vertical-align: middle; }
-#stories li > a > div img { padding: 0 0 0 10px; }
-#stories li > a > div img:first-child { padding-left: 0; }
-#stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; vertical-align: middle; background-color: #fff; padding: 0 0 0 5px; }
+#stories li, #stories li * { background-color: #ffffff; color: #000000; }
+#stories li > a, #stories li > div { display: block; overflow: hidden; white-space: nowrap; text-decoration: none; position: relative; }
+#stories li span, #stories li span::before { vertical-align: middle; }
+#stories li .emblems { display: block; position: absolute; top: 0; right: 0; height: 25px; line-height: 25px; padding: 0 0 0 5px; }
 
-
-#stories li span.title::before { vertical-align: middle; padding: 0 3px 0 0; }
+#stories li span.title::before { padding: 0 3px 0 0; }
 #stories li span.title::before { content: url("/images/icons/page_white_text.png");  }
 #stories li span.title.many_opens::before { content: url("/images/icons/award_star_bronze_1.png"); }/* :title => "Has been read 10 or more times.")}*/
 #stories li span.title.scrap:before { content: url("/images/icons/page_white_text_scrap.png"); }/* :title => "Has been read 10 or more times.")}*/
@@ -115,11 +112,7 @@ html.manipulate #nav-wrapper {
 #stories li span.opens::before { content: url("/images/icons/application_go.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 #stories li span.wc::before { content: url("/images/icons/page_white_stack.png"); vertical-align: middle; padding: 0 3px 0 10px; }
 
-#stories li:hover > a > div { background-color: #000000; color: #ffffff; }
-#stories li:hover .emblems { background-color: #000000; color: #ffffff; }
-
-#story #info { float: left; width: 315px; }
-#story .actions { margin-top: 15px; border-top: 1px solid #a0a0a0; padding-top: 15px; }
+#stories li:hover, #stories li:hover * { background-color: #000000; color: #ffffff; }
 
 #stories-show #previous-page, #stories-show #next-page { display: none; }
 #stories-show nav { }
