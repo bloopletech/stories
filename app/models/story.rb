@@ -74,7 +74,7 @@ class Story < ActiveRecord::Base
   
   def self.import_directory(dir)
     require 'fileutils'
-    FileUtils.rm_rf(Dir.glob("#{File.escape_glob_name(dir)}/**/*_files"))
+    FileUtils.rm_rf(Dir.glob("#{File.quote_glob_name(dir)}/**/*_files"))
     
     #Requires GNU find 3.8 or above
     cmd = <<-CMD
@@ -170,6 +170,10 @@ EOF
 
   def export_text
     FutureFile.new("#{File.sanitize_name(title)}_#{id}.txt", nsf.to_nsf)    
+  end
+
+  def export_pdf
+    FutureFile.new("#{File.sanitize_name(title)}_#{id}.pdf", nsf.to_pdf)
   end
 
   def export_rtf

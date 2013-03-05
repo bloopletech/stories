@@ -1,8 +1,9 @@
 class FutureFile
-  attr_accessor :filename, :content
+  attr_reader :filename, :content, :mimetype
 
-  def initialize(filename = nil, content = nil)
-    self.filename = filename
-    self.content = content    
+  def initialize(filename, content = nil, mimetype = nil)
+    @filename = filename
+    @content = content
+    @mimetype = mimetype || Mime::Type.lookup_by_extension(File.extname(filename).downcase.tr('.',''))
   end
 end

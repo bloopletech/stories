@@ -85,10 +85,19 @@ class StoriesController < ApplicationController
           exported.each { |e| csv << e }
         end
       else
-        exported.each do |e|
-          File.open("#{Stories.export_dir}/#{e.filename}", "w") do |f|
-            f << e.content
-            f.flush
+        if params[:download] == "true"
+          if exported.length == 1
+            send_data exported.first.content, :filename => exported.first.filename, :mimetype => exported.first.mimetype
+            return
+          else
+            #Zip up the files and send the zip file
+          end
+        else
+          exported.each do |e|
+            File.open("#{Stories.export_dir}/#{e.filename}", "w", :external_encoding => e.content.encoding, :internal_encoding => nil) do |f|
+              f << e.content
+              f.flush
+            end
           end
         end
       end
@@ -191,7 +200,7 @@ class StoriesController < ApplicationController
         nil
       else
         included_tags.map do |t|
-          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ? OR stories.content LIKE ?)".gsub("?", c.quote("%#{t}%"))
+          "(stories.title LIKE ? OR stories.most_frequent_words LIKE ?)".gsub("?", c.quote("%#{t}%"))
         end.join(" AND ")
       end
       search_ex = if excluded_tags.empty?

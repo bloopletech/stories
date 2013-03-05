@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
-Rails.logger = Logger.new("/dev/null")
+Rails.logger = Logger.new("/dev/null") if Rails.env.production?
 
 require 'fileutils'
 
