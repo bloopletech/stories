@@ -1,6 +1,10 @@
 - content_for :nav do
   %li= link_to(ic('accept', "Close"), "#", :onclick => 'window.close();')
   %li= link_to(ic('pencil', "Edit"), edit_story_path(@story))
-  %li= link_to(ic('page_white_put', "Download"), export_story_path(params.except(:controller, :action).merge(:mode => 'single', :format => 'html', :download => true)))
+  %li.separator
+  %li= link_to(ic('page_white_world', "Download as HTML"), export_story_path(params.except(:controller, :action).merge(:mode => 'single', :format => 'html', :download => true)))
+  %li= link_to(ic('page_white_acrobat', "Download as PDF"), export_story_path(params.except(:controller, :action).merge(:mode => 'single', :format => 'pdf', :download => true)))
+  %li= link_to(ic('page_white_text', "Download as TXT"), export_story_path(params.except(:controller, :action).merge(:mode => 'single', :format => 'text', :download => true)))
   %li= link_to(ic('package_go', "Export"), export_story_path(params.except(:controller, :action).merge(:mode => 'single')), :id => 'story_export')
+  %li.separator
   %li= link_to(ic('delete', "Delete"), story_path(@story), :method => :delete, :confirm => 'Are you sure?')
