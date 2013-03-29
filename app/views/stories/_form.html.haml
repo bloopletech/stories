@@ -6,7 +6,7 @@
         - @story.errors.full_messages.each do |message|
           %li= message
 
-  = f.text_area :content
+  = f.text_area :content, :autofocus => "autofocus"
 
   = f.label :tag_list
   = f.text_field :tag_list

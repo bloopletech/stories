@@ -64,6 +64,12 @@ module Stories
 
   Dir.mkdir(import_dir) unless File.exists?(import_dir)
   Dir.mkdir(export_dir) unless File.exists?(export_dir)
+
+  shared_dir = "#{Stories.export_dir}/shared"
+  unless File.exists?(shared_dir)
+    Dir.mkdir(shared_dir)
+    FileUtils.cp_r("#{Rails.root}/public/export_shared/.", shared_dir)
+  end
 end
 
 require Rails.root.join("config/version")

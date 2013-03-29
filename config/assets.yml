@@ -25,9 +25,6 @@ stylesheets:
   common:
     - public/stylesheets/style.css
 
-  manipulate:
-    - public/stylesheets/manipulate.css
-
   heavy:
     - public/stylesheets/style.css
     - public/stylesheets/formtastic.css

@@ -158,9 +158,15 @@ CMD
   <head>
     <meta charset="utf-8">
     <title>#{CGI.escapeHTML title}</title>
+    <link href="shared/style.css" media="all" rel="stylesheet" type="text/css">
+    <script src="shared/jquery.js" type="text/javascript"></script>
+    <script src="shared/jquery.twoup.js" type="text/javascript"></script>
+    <script src="shared/story.js" type="text/javascript"></script>
   </head>
   <body>
-    #{nsf.to_html}
+    <div id="wrapper">
+      #{nsf.to_html}
+    </div>
   </body>
 </html>
 EOF
