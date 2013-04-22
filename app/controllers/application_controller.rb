@@ -2,14 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
 
-  before_filter :ensure_stories_setup
-
-  private
-  def ensure_stories_setup
-    redirect_to collections_path if Stories.dir.nil?
-  end
-  
-  
   #HACK to fix params encoding https://rails.lighthouseapp.com/projects/8994/tickets/4336
   private
   before_filter :force_utf8_params
