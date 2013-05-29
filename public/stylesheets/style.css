@@ -154,6 +154,28 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
   opacity: 1.0;
 }
 
+#story-back, #story-next {
+  position: absolute;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  z-index: 10000;
+}
+
+#story-back:hover, #story-next:hover {
+  background-color: #000000;
+  opacity: 0.1;
+}
+
+#story-back {
+  left: 0;
+}
+
+#story-next {
+  right: 0;
+}
+
+
 #toc {
  float: right;
  margin: 44px 0px 12px 12px;

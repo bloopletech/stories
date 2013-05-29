@@ -21,6 +21,14 @@ $(function() {
         $("#story-progress-slider").prop("max", $.twoup.pages()).css("width", progress_width - 400 + "px");
         $(window).trigger("hashchange");
       }).resize();
+
+     $("body").append('<div id="story-back"></div><div id="story-next"></div>');
+     $("#story-back").click(function() {
+       $.twoup.page(-$.twoup.columns(), true);
+     });
+     $("#story-next").click(function() {
+       $.twoup.page($.twoup.columns(), true);
+     });
     }
   }
 
