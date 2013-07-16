@@ -1,6 +1,6 @@
 $(function() {
   if(!$("html").hasClass("manipulate")) {
-    $("#wrapper").twoup("none");
+    $("#wrapper").twoup("none", $("html").is("#stories-index") ? 400 : 0);
 
     if($.twoup.enabled()) {
       $("body").append('<div id="story-progress"><span id="story-page"></span><input type="range" min="1" id="story-progress-slider"><span id="story-percent"></span></div>');

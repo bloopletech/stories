@@ -3,14 +3,17 @@
   var padding_width = 0;
   var content_width = 0;
   var scroll_width = 0;
+  var min_column_width = 0;
   var content, slider, padding;
 
   //Cargo-culting from colorbox
-  var twoup = $.fn.twoup = $.twoup = function(column_rule) {
+  var twoup = $.fn.twoup = $.twoup = function(column_rule, mcw) {
     if(content) {
       alert("You already have a twoup!");
       return;
     }
+
+    twoup.min_column_width = min_column_width = mcw;
 
     twoup.content = content = $("<div></div>").css({ "-webkit-column-rule": column_rule, "-moz-column-rule": column_rule, "column-rule": column_rule });
     twoup.slider = slider = $("<div></div>");
@@ -49,7 +52,7 @@
   }
 
   twoup.columns = function() {
-    return Math.max(1, Math.floor($(window).width() / (18 * padding_width)));
+    return Math.max(1, Math.floor($(window).width() / (min_column_width > 0 ? min_column_width : (18 * padding_width))));
   };
 
   twoup.column_width = function() {
