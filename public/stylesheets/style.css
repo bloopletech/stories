@@ -35,7 +35,7 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 
 #wrapper {
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
 }
 
 #stories-index #wrapper {
@@ -48,6 +48,7 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
  float: right;
  margin: 0 0 20px 20px;
  position: relative;
+ z-index: 10002;
 }
 
 #nav-wrapper:hover > #nav { display: block; }
@@ -62,7 +63,7 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
  position: absolute;
  top: 31px;
  left: 0;
- z-index: 1000;
+ z-index: 10003;
 }
 .menu-item {
   padding: 0 1px;
@@ -95,6 +96,11 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
 }
 #nav li a span, .menu-item a span {
  vertical-align: middle;
+}
+
+#search_form {
+  position: relative;
+  z-index: 10001;
 }
 
 /* List page only */
@@ -132,7 +138,7 @@ h4 { font-size: 20px; margin-bottom: 0.6em; text-align: left; font-weight: bold;
   left: 50%;
   width: 1000px;
   margin-left: -500px;
-  z-index: 1000;
+  z-index: 10001;
   opacity: 0;
 }
 

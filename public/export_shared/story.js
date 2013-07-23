@@ -1,5 +1,5 @@
 $(function() {
-  $("#wrapper").twoup("none");
+  $("#wrapper").twoup("none", 600);
 
   if($.twoup.enabled()) {
     $("body").append('<div id="story-progress"><span id="story-page"></span><input type="range" min="1" id="story-progress-slider"><span id="story-percent"></span></div>');

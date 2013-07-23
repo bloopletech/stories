@@ -52,7 +52,8 @@
   }
 
   twoup.columns = function() {
-    return Math.max(1, Math.floor($(window).width() / (min_column_width > 0 ? min_column_width : (18 * padding_width))));
+    var min_column_width_with_padding = padding_width + (min_column_width > 0 ? min_column_width : (18 * padding_width));
+    return Math.max(1, Math.floor($(window).width() / (min_column_width_with_padding + padding_width)));
   };
 
   twoup.column_width = function() {
