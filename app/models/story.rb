@@ -171,19 +171,19 @@ CMD
 </html>
 EOF
 
-    FutureFile.new("#{File.sanitize_name(title)}_#{id}.html", out)
+    FutureFile.new("#{File.sanitize_name(title)}.html", out, (published_on ? published_on : created_at))
   end
 
   def export_text
-    FutureFile.new("#{File.sanitize_name(title)}_#{id}.txt", nsf.to_nsf)    
+    FutureFile.new("#{File.sanitize_name(title)}.txt", nsf.to_nsf, (published_on ? published_on : created_at))
   end
 
   def export_pdf
-    FutureFile.new("#{File.sanitize_name(title)}_#{id}.pdf", nsf.to_pdf)
+    FutureFile.new("#{File.sanitize_name(title)}.pdf", nsf.to_pdf, (published_on ? published_on : created_at))
   end
 
   def export_rtf
-    FutureFile.new("#{File.sanitize_name(title)}_#{id}.rtf", nsf.to_nsf)    
+    FutureFile.new("#{File.sanitize_name(title)}.rtf", nsf.to_nsf, (published_on ? published_on : created_at))
   end
 
   CSV_HEADER = ["Title", "Content", "Most Frequent Words", "Tags", "Opens", "Word Count", "Byte Size", "Last Opened At", "Published On", "Created At", "Updated At"]

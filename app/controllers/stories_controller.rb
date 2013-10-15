@@ -94,10 +94,14 @@ class StoriesController < ApplicationController
           end
         else
           exported.each do |e|
-            File.open("#{Stories.export_dir}/#{e.filename}", "w", :external_encoding => e.content.encoding, :internal_encoding => nil) do |f|
+            extname = File.extname(e.filename)
+            basename = File.basename(e.filename).chomp(extname)
+            full_path = generate_unique_path(Stories.export_dir, basename, extname)
+            File.open(full_path, "w", :external_encoding => e.content.encoding, :internal_encoding => nil) do |f|
               f << e.content
               f.flush
             end
+            File.utime(e.mtime, e.mtime, full_path)
           end
         end
       end
@@ -223,5 +227,16 @@ class StoriesController < ApplicationController
   private
   def pick_page_style
     @page_style = ([:new, :create, :edit, :update, :destroy, :export, :info].include?(action_name.to_sym) ? "manipulate" : "application")
+  end
+
+  def generate_unique_path(directory, basename, extname)
+    suffix = 0
+    full = ""
+    loop do
+      full = directory + "/" + basename + (suffix == 0 ? "" : " (#{suffix})") + extname
+      break unless File.exist?(full)
+      suffix += 1
+    end
+    full
   end
 end
